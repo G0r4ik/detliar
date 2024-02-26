@@ -75,6 +75,11 @@
   </head>
 
   <body>
+    <div class="made-by">
+      <div>made by</div>
+      <a href="https://t.me/lllEGOR">G0Ra</a>
+    </div>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
     <canvas id="canvas"></canvas>
     <main>
       <div class="main__inner">
@@ -179,6 +184,9 @@
         Всем добра и позитива <span class="smile">:)</span>
       </p>
       <img src="./imgs/ocat.jpg" alt="" />
+      <button class="hate-button" onclick="crush()">
+        Ненавидишь меня? Жми!
+      </button>
     </div>
 
     <div class="comments">
@@ -194,6 +202,8 @@
       <hr class="comment-line" />
       <div id="messages"></div>
     </div>
+
+    <div id="spamr"></div>
   </body>
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   <script>
@@ -222,17 +232,44 @@
       messageElement.classList.add('messages__item', 'message')
 
       messageElement.innerHTML = `
-        <div class="message__name">${msg.user}</div>
-        <div class="message__text">${msg.text}</div>
-        <div class="message__date">${msg.date}</div>
-      `
+            <div class="message__name">${msg.user}</div>
+            <div class="message__text">${msg.text}</div>
+            <div class="message__date">${msg.date}</div>
+          `
 
       const messages = document.getElementById('messages')
       messages.insertBefore(messageElement, messages.children[0])
       socket.auth.serverOffset = serverOffset
     })
     //
+
+    function crush() {
+      var container = document.querySelector('body')
+      setInterval(() => {
+        var rectangle = document.createElement('div')
+        rectangle.classList.add('rectangle')
+        rectangle.textContent = 'ПРОСТИ!'
+
+        var x = Math.floor(Math.random() * window.innerWidth - 100)
+        var y = Math.floor(Math.random() * window.innerHeight - 100)
+        rectangle.style.left = x + 'px'
+        rectangle.style.top = y + 'px'
+
+        // Генерируем случайные размеры для прямоугольника
+        var width = Math.floor(Math.random() * 100) + 70
+        var height = Math.floor(Math.random() * 100) + 70
+        rectangle.style.width = width + 'px'
+        rectangle.style.height = width + 'px'
+
+        container.appendChild(rectangle)
+      }, 10)
+    }
   </script>
+
+  <script>
+    // Создаем 5 перекрывающихся прямоугольников при загрузке страницы
+  </script>
+  <style></style>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script src="./confeti.js"></script>

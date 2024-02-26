@@ -46,7 +46,7 @@ io.on('connection', async socket => {
       dateD,
       msg.user
     )
-    io.emit('chat message', { ...msg, dateD }, result.lastID)
+    io.emit('chat message', { ...msg, date: dateD }, result.lastID)
   })
 
   if (!socket.recovered) {
