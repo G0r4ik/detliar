@@ -197,7 +197,7 @@
   </body>
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   <script>
-    const socket = io('http://localhost:3000', {
+    const socket = io('https://api.detliar.com', {
       auth: {
         serverOffset: 0,
       },
@@ -218,7 +218,6 @@
     })
 
     socket.on('chat message', (msg, serverOffset) => {
-      console.log(msg)
       const messageElement = document.createElement('div')
       messageElement.classList.add('messages__item', 'message')
 
