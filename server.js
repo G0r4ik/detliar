@@ -32,7 +32,7 @@ const io = new Server(server, {
 
 io.on('connection', async socket => {
   socket.on('chat message', async msg => {
-    const date = new Intl.DateTimeFormat('ru', {
+    const dateD = new Intl.DateTimeFormat('ru', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -43,10 +43,10 @@ io.on('connection', async socket => {
     let result = await db.run(
       'INSERT INTO messages (textM, dateM, userM) VALUES (?, ?, ?)',
       msg.text,
-      msg.date,
+      dateD,
       msg.user
     )
-    io.emit('chat message', { ...msg, date }, result.lastID)
+    io.emit('chat message', { ...msg, dateD }, result.lastID)
   })
 
   if (!socket.recovered) {
