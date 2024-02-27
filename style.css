@@ -4,34 +4,39 @@
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) var(--color-background);
+  scrollbar-color: royalblue #222;
+}
+*::-webkit-scrollbar {
+  width: 15px;
+}
+*::-webkit-scrollbar-track {
+  background-color: #222;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #222;
+  border: 1px solid royalblue;
+  border-radius: 15px;
 }
 
-.messages__item {
-  margin-bottom: 20px;
-}
-.message__name {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.message__date {
-  margin-top: 5px;
-  font-size: smaller;
-}
 button {
   color: inherit;
   cursor: pointer;
   background: none;
   border: none;
 }
-
-.send-btn {
-  background: royalblue;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+h1 {
+  margin: 0;
+  font-size: 150px;
+  color: rgba(225, 225, 225, 0.01);
+  /* background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg'); */
+  background-image: url('https://pibig.info/uploads/posts/2021-05/1620011218_4-pibig_info-p-anime-mnogo-geroev-anime-krasivo-15.jpg');
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  animation: headingAnimate 15s infinite;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
 }
-
 input,
 textarea {
   outline: none;
@@ -51,7 +56,6 @@ textarea {
   min-height: 60px;
   max-height: 150px;
 }
-
 body {
   overflow-x: hidden;
   color: white;
@@ -62,35 +66,21 @@ a {
   text-decoration: none;
   color: white;
 }
-main {
-}
-
-.title-section {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.main__inner {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 img {
   width: 100%;
   display: block;
   object-fit: cover;
   height: 100vh;
 }
-
-.comment-line {
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  width: 320px;
-  margin: 15px auto;
+h2 {
+  /* background: #000; */
+  text-shadow: 3px 3px 3px royalblue;
+  text-transform: uppercase;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+p {
+  font-size: 24px;
 }
 
 #form-message {
@@ -100,26 +90,50 @@ img {
   margin: 0 auto;
 }
 
-.send-btn {
-  width: 50px;
-}
-
 #messages {
   width: 320px;
   margin: 0 auto;
-
-  /* text-align: center; */
 }
-h2 {
-  /* background: #000; */
-  text-shadow: 3px 3px 3px royalblue;
-  text-transform: uppercase;
-  font-size: 60px;
+
+/*  */
+
+.send-btn {
+  background: royalblue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.messages__item {
   margin-bottom: 20px;
 }
-
-p {
-  font-size: 24px;
+.message__name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.message__date {
+  margin-top: 5px;
+  font-size: smaller;
+}
+.title-section {
+  text-align: center;
+  margin: 20px 0;
+}
+.main__inner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.comment-line {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 320px;
+  margin: 15px auto;
+}
+.send-btn {
+  width: 50px;
 }
 .icon {
   width: 64px;
@@ -130,7 +144,6 @@ p {
   /* background: white; */
   /* border-radius: 50%; */
 }
-
 .links {
   /* display: flex;
   align-items: center;
@@ -148,11 +161,6 @@ p {
   margin-top: 25px;
   margin-bottom: 50px;
 }
-
-canvas {
-  position: absolute;
-}
-
 .scroll-bottom {
   display: block;
   margin: 0 auto;
@@ -161,227 +169,14 @@ canvas {
   text-align: center;
   padding-bottom: 15px;
 }
-
 .scroll-bottom {
-  animation: scroll-a 2s infinite;
+  animation: scroll-bottom 2s infinite;
   position: relative;
 }
 
-@keyframes scroll-a {
-  0% {
-    top: -10px;
-  }
-  50% {
-    top: 10px;
-  }
-  100% {
-    top: -10px;
-  }
-}
-
-*::-webkit-scrollbar {
-  width: 15px;
-}
-*::-webkit-scrollbar-track {
-  background-color: #222;
-}
-*::-webkit-scrollbar-thumb {
-  background-color: #222;
-  border: 1px solid royalblue;
-  border-radius: 15px;
-}
-
-h1 {
-  margin: 0;
-  font-size: 150px;
-  color: rgba(225, 225, 225, 0.01);
-  /* background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg'); */
-  background-image: url('https://pibig.info/uploads/posts/2021-05/1620011218_4-pibig_info-p-anime-mnogo-geroev-anime-krasivo-15.jpg');
-  background-repeat: repeat;
-  -webkit-background-clip: text;
-  animation: animate1 15s infinite;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 900;
-}
-
-@keyframes animate1 {
-  0%,
-  100% {
-    background-position: left top;
-  }
-  25% {
-    background-position: right bottom;
-  }
-  50% {
-    background-position: left bottom;
-  }
-  75% {
-    background-position: right top;
-  }
-}
-
-.glowing {
-  position: relative;
-  min-width: 700px;
-  height: 550px;
-  margin: -150px;
-  transform-origin: right;
-  animation: colorChange 5s linear infinite;
-}
-
-.glowing:nth-child(even) {
-  transform-origin: left;
-}
-
-@keyframes colorChange {
-  0% {
-    filter: hue-rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.glowing span {
-  position: absolute;
-  top: calc(80px * var(--i));
-  left: calc(80px * var(--i));
-  bottom: calc(80px * var(--i));
-  right: calc(80px * var(--i));
-}
-
-.glowing {
-  position: relative;
-  min-width: 700px;
-  height: 550px;
-  margin: -150px;
-  transform-origin: right;
-  animation: colorChange 5s linear infinite;
-}
-
-.glowing:nth-child(even) {
-  transform-origin: left;
-}
-
-@keyframes colorChange {
-  0% {
-    filter: hue-rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.glowing span {
-  position: absolute;
-  top: calc(80px * var(--i));
-  left: calc(80px * var(--i));
-  bottom: calc(80px * var(--i));
-  right: calc(80px * var(--i));
-}
-
-.glowing span::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -8px;
-  width: 15px;
-  height: 15px;
-  background: #f00;
-  border-radius: 50%;
-}
-
-.glowing span:nth-child(3n + 1)::before {
-  background: rgba(134, 255, 0, 1);
-  box-shadow: 0 0 20px rgba(134, 255, 0, 1), 0 0 40px rgba(134, 255, 0, 1),
-    0 0 60px rgba(134, 255, 0, 1), 0 0 80px rgba(134, 255, 0, 1),
-    0 0 0 8px rgba(134, 255, 0, 0.1);
-}
-
-.glowing span:nth-child(3n + 2)::before {
-  background: rgba(255, 214, 0, 1);
-  box-shadow: 0 0 20px rgba(255, 214, 0, 1), 0 0 40px rgba(255, 214, 0, 1),
-    0 0 60px rgba(255, 214, 0, 1), 0 0 80px rgba(255, 214, 0, 1),
-    0 0 0 8px rgba(255, 214, 0, 0.1);
-}
-
-.glowing span:nth-child(3n + 3)::before {
-  background: rgba(0, 226, 255, 1);
-  box-shadow: 0 0 20px rgba(0, 226, 255, 1), 0 0 40px rgba(0, 226, 255, 1),
-    0 0 60px rgba(0, 226, 255, 1), 0 0 80px rgba(0, 226, 255, 1),
-    0 0 0 8px rgba(0, 226, 255, 0.1);
-}
-
-.glowing span:nth-child(3n + 1) {
-  animation: animate 10s alternate infinite;
-}
-
-.glowing span:nth-child(3n + 2) {
-  animation: animate-reverse 3s alternate infinite;
-}
-
-.glowing span:nth-child(3n + 3) {
-  animation: animate 8s alternate infinite;
-}
-
-@keyframes animate {
-  0% {
-    transform: rotate(180deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate-reverse {
-  0% {
-    transform: rotate(360deg);
-  }
-
-  50% {
-    transform: rotate(180deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
 .icon:hover {
   transform: scale(1.1);
   transition: 0.5s;
-}
-.circles {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-@media (width < 768px) {
-  h1 {
-    font-size: 70px;
-  }
-
-  h2 {
-    font-size: 40px;
-  }
-
-  .links {
-    gap: 25px;
-  }
-
-  .icon {
-    width: 44px;
-    height: 44px;
-  }
 }
 
 .last-img {
@@ -407,45 +202,6 @@ h1 {
   /* animation: colorChange 5s linear infinite; */
   transform: rotate(-45deg);
 }
-
-@keyframes smile {
-  0% {
-    transform: rotate(-180deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
-
-/* @keyframes smile {
-  0% {
-    transform: rotate(-45deg);
-    background: #000;
-  }
-  50% {
-    transform: rotateX(90deg);
-  }
-  100% {
-    transform: rotateX(45deg);
-    transform: rotateX(90deg);
-  }
-} */
-
-/* .last-img:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0) 60%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
-} */
 
 .rectangle {
   position: fixed;
@@ -479,4 +235,58 @@ h1 {
   z-index: 4;
   text-align: right;
   font-size: 10px;
+}
+
+@media (width < 768px) {
+  h1 {
+    font-size: 70px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  .links {
+    gap: 25px;
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@keyframes smile {
+  0% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes headingAnimate {
+  0%,
+  100% {
+    background-position: left top;
+  }
+  25% {
+    background-position: right bottom;
+  }
+  50% {
+    background-position: left bottom;
+  }
+  75% {
+    background-position: right top;
+  }
+}
+@keyframes scroll-bottom {
+  0% {
+    top: -10px;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top: -10px;
+  }
 }
