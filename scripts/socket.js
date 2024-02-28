@@ -10,8 +10,10 @@ const sendMessage = document.querySelector('.comments__send-button')
 
 sendMessage.addEventListener('click', e => {
   e.preventDefault()
-  if (text.value && user.value) {
-    socket.emit('chat message', { text: text.value, user: user.value })
+  const userValue = user.value.trim()
+  const textValue = text.value.trim()
+  if (userValue && textValue) {
+    socket.emit('chat message', { text: textValue, user: userValue })
     text.value = ''
   }
 })
