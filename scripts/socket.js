@@ -26,7 +26,7 @@ socket.on('chat message', (msg, serverOffset) => {
         <div class="message__name">${msg.user}</div>
         <div class="message__text">${msg.text}</div>
         <div class="message__date">${msg.date}</div>
-      `
+        `
 
   messages.insertBefore(messageElement, messages.children[0])
   socket.auth.serverOffset = serverOffset
