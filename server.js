@@ -66,6 +66,12 @@ io.on('connection', async socket => {
       console.log(e)
     }
   }
+
+  io.emit('changeUserCount', io.engine.clientsCount)
+
+  socket.on('disconnect', () => {
+    io.emit('changeUserCount', io.engine.clientsCount)
+  })
 })
 
 server.listen(30000, () => {

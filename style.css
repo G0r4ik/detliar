@@ -5,6 +5,8 @@
   font-family: 'PT Sans', sans-serif;
   scrollbar-width: thin;
   scrollbar-color: royalblue #222;
+  color: white;
+  font-size: 24px;
 }
 *::-webkit-scrollbar {
   width: 15px;
@@ -17,132 +19,115 @@
   border: 1px solid royalblue;
   border-radius: 15px;
 }
-
+body {
+  overflow-x: hidden;
+  background: #222;
+  padding-bottom: 50px;
+}
 button {
   color: inherit;
   cursor: pointer;
   background: none;
   border: none;
 }
-h1 {
-  margin: 0;
+input,
+textarea {
+  outline: none;
+  padding: 5px 15px;
+  background: transparent;
+  border: 1px solid hsl(240 3.7% 15.9%);
+  border-radius: 5px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/*  */
+
+.title-section {
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.button-normal {
+  background: royalblue;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.hr-line {
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+}
+
+.made-by {
+  position: absolute;
+  opacity: 0.1;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 4;
+  text-align: right;
+}
+
+.made-by span {
+  display: block;
+  font-size: 10px;
+}
+
+.rectangle {
+  position: fixed;
+  border: 2px solid red;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.users-count {
+  margin-bottom: 15px;
+}
+
+/*  */
+
+.intro {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.detliar {
   font-size: 150px;
   color: rgba(225, 225, 225, 0.01);
-  /* background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg'); */
+  background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg');
   background-image: url('https://pibig.info/uploads/posts/2021-05/1620011218_4-pibig_info-p-anime-mnogo-geroev-anime-krasivo-15.jpg');
   background-repeat: repeat;
+  background-clip: text;
   -webkit-background-clip: text;
   animation: headingAnimate 15s infinite;
   text-align: center;
   text-transform: uppercase;
   font-weight: 900;
 }
-input,
-textarea {
-  outline: none;
-  padding: 5px 15px;
-  font-size: 18px;
-  background: transparent;
-  border: 1px solid hsl(240 3.7% 15.9%);
-  border-radius: 5px;
-  font-family: inherit;
-  font-feature-settings: inherit;
-  font-variation-settings: inherit;
-  color: white;
-  /* height: 44px; */
-}
-textarea {
-  resize: vertical;
-  min-height: 60px;
-  max-height: 150px;
-}
-body {
-  overflow-x: hidden;
-  color: white;
-  background: #222;
-  padding-bottom: 50px;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  height: 100vh;
-}
-h2 {
-  /* background: #000; */
+.detliar__subtitle {
   text-shadow: 3px 3px 3px royalblue;
   text-transform: uppercase;
   font-size: 60px;
   margin-bottom: 20px;
 }
-p {
-  font-size: 24px;
-}
 
-#form-message {
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  margin: 0 auto;
-}
-
-#messages {
-  width: 320px;
-  margin: 0 auto;
-}
-
-/*  */
-
-.send-btn {
-  background: royalblue;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-.messages__item {
-  margin-bottom: 20px;
-}
-.message__name {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.message__date {
-  margin-top: 5px;
-  font-size: smaller;
-}
-.title-section {
-  text-align: center;
-  margin: 20px 0;
-}
-.main__inner {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.comment-line {
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  width: 320px;
-  margin: 15px auto;
-}
-.send-btn {
-  width: 50px;
-}
+/* FIX BOTTOM */
 .icon {
   width: 64px;
   height: 64px;
   transform: scale(1);
-  transition: 0.1s;
-  /* fill: royalblue; */
-  /* background: white; */
-  /* border-radius: 50%; */
+  transition: 0.4s;
 }
 .links {
   /* display: flex;
@@ -157,10 +142,6 @@ p {
   background: #f3f3f3;
   border-radius: 25px;
 }
-.positive-text {
-  margin-top: 25px;
-  margin-bottom: 50px;
-}
 .scroll-bottom {
   display: block;
   margin: 0 auto;
@@ -173,69 +154,102 @@ p {
   animation: scroll-bottom 2s infinite;
   position: relative;
 }
-
 .icon:hover {
   transform: scale(1.1);
   transition: 0.5s;
 }
 
-.last-img {
-  position: relative;
+/* FIX TOP */
+
+/* COMMENTS */
+
+.comments {
+  padding: 15px;
+}
+.comments__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+#comment-user {
+  max-width: 300px;
+}
+#comment-text {
+  resize: none;
+  margin-bottom: 10px;
+}
+.comments__send-button {
+  width: 150px;
 }
 
-.last-img p {
+/* MESSAGE */
+
+.messages__item {
+  margin-bottom: 20px;
+  border: 1px solid burlywood;
+  border-radius: 10px;
+  padding: 15px;
+}
+.message__text {
+  word-break: break-word;
+}
+.message__name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.message__date {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* POSITIVE */
+
+.full-positive {
+  position: relative;
+}
+.full-positive__img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 100vh;
+  height: 100dvh;
+}
+.full-positive__text {
+  margin-top: 25px;
+  margin-bottom: 50px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  font-size: 50px;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
 }
-
-.smile {
-  color: tomato;
-  display: block;
-  font-size: 150px;
-  z-index: 5;
-  animation: smile 2s linear infinite;
-  /* animation: colorChange 5s linear infinite; */
-  transform: rotate(-45deg);
-}
-
-.rectangle {
-  position: fixed;
-  border: 2px solid red;
-  background-color: black;
-  display: flex;
-  z-index: 3;
-  align-items: center;
-  justify-content: center;
-}
-
-.hate-button {
-  background: royalblue;
-  color: white;
-  width: 150px;
-  padding: 5px 15px;
-  border-radius: 15px;
+.full-positive__hate-button {
+  width: 130px;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  /* opacity: 0.7; */
   z-index: 0;
+  font-size: 14px;
+}
+.full-positive__smile {
+  color: tomato;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  font-size: 150px;
+  width: 1px;
+  height: 1px;
+  z-index: 1;
+  animation: smile 1s linear infinite, colorChange 1s linear infinite;
+  /* animation: ; */
 }
 
-.made-by {
-  position: absolute;
-  opacity: 0.1;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 4;
-  text-align: right;
-  font-size: 10px;
-}
+/*  */
 
 @media (width < 768px) {
   h1 {
@@ -288,5 +302,22 @@ p {
   }
   100% {
     top: -10px;
+  }
+}
+@keyframes colorChange {
+  0% {
+    color: blue;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: yellow;
+  }
+  75% {
+    color: black;
+  }
+  100% {
+    color: red;
   }
 }

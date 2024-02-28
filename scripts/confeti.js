@@ -27,30 +27,30 @@
 //       origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
 //     })
 //   }, 250)
-// }, 2000)
+// }, 10)
 
-var end = Date.now() + 5 * 1000
+// var end = Date.now() + 5 * 1000
 
-// go Buckeyes!
-var colors = ['#bb0000', '#ffffff']
+// // go Buckeyes!
+// var colors = ['#bb0000', '#ffffff']
 
-;(function frame() {
-  confetti({
-    particleCount: 2,
-    angle: 60,
-    spread: 55,
-    origin: { x: 0 },
-    colors: colors,
-  })
-  confetti({
-    particleCount: 2,
-    angle: 120,
-    spread: 55,
-    origin: { x: 1 },
-    colors: colors,
-  })
+// ;(function frame() {
+//   confetti({
+//     particleCount: 2,
+//     angle: 60,
+//     spread: 55,
+//     origin: { x: 0 },
+//     colors: colors,
+//   })
+//   confetti({
+//     particleCount: 2,
+//     angle: 120,
+//     spread: 55,
+//     origin: { x: 1 },
+//     colors: colors,
+//   })
 
-  if (Date.now() < end) {
-    requestAnimationFrame(frame)
-  }
-})()
+//   if (Date.now() < end) {
+//     requestAnimationFrame(frame)
+//   }
+// })()

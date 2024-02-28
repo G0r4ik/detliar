@@ -1,5 +1,4 @@
-const buttonCrush = document.querySelector('.hate-button')
-
+const buttonCrush = document.querySelector('.full-positive__hate-button')
 buttonCrush.addEventListener('click', crush)
 
 function crush() {
@@ -14,11 +13,9 @@ function crush() {
     rectangle.style.left = x + 'px'
     rectangle.style.top = y + 'px'
 
-    // Генерируем случайные размеры для прямоугольника
-    var width = Math.floor(Math.random() * 100) + 70
-    var height = Math.floor(Math.random() * 100) + 70
-    rectangle.style.width = width + 'px'
-    rectangle.style.height = width + 'px'
+    var size = Math.floor(Math.random() * 100) + 70
+    rectangle.style.width = size + 'px'
+    rectangle.style.height = size + 'px'
 
     container.appendChild(rectangle)
   }, 10)

@@ -75,17 +75,12 @@
   </head>
 
   <body>
-    <a href="https://t.me/lllEGOR" class="made-by">
-      <div>made by</div>
-      <div>G0Ra</div>
-    </a>
-
     <main>
       <section>
-        <div class="main__inner">
+        <div class="intro">
           <span>i'm</span>
-          <h1>detliar</h1>
-          <h2>pro gamer</h2>
+          <h1 class="detliar">detliar</h1>
+          <h2 class="detliar__subtitle">pro gamer</h2>
 
           <div class="links">
             <a href="https://steamcommunity.com/profiles/76561198332119189/">
@@ -138,6 +133,7 @@
             </a>
           </div>
         </div>
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon scroll-bottom"
@@ -156,28 +152,42 @@
         </svg>
       </section>
 
-      <section class="last-img">
-        <p class="positive-text">
-          Всем добра и позитива <span class="smile">:)</span>
-        </p>
-        <img src="./imgs/ocat.jpg" alt="" />
-        <button class="hate-button">Ненавидишь меня? Жми!</button>
+      <section class="full-positive">
+        <p class="full-positive__text">Всем добра и позитива</p>
+        <span class="full-positive__smile">:)</span>
+
+        <img src="./imgs/ocat.jpg" class="full-positive__img" alt="cat" />
+        <button class="full-positive__hate-button button-normal">
+          Hate me? Click!
+        </button>
       </section>
 
       <section class="comments">
         <h3 class="title-section">Общаемся</h3>
-        <div id="form-message">
-          <input type="text" placeholder="Your name" id="user" />
+        <p class="users-count">
+          Online users:
+          <span class="users-count__count">0</span>
+        </p>
+        <div class="comments__form">
+          <input
+            type="text"
+            placeholder="Type your name here."
+            id="comment-user" />
           <textarea
-            rows="2"
+            rows="3"
             placeholder="Type your message here."
-            id="text"></textarea>
-          <button class="send-btn" id="send-message">Send</button>
+            id="comment-text"></textarea>
+          <button class="comments__send-button button-normal">Send</button>
         </div>
-        <hr class="comment-line" />
-        <div id="messages"></div>
+        <!-- <hr class="hr-line comments__line" /> -->
+        <div class="comments__messages messages"></div>
       </section>
     </main>
+
+    <a href="https://t.me/lllEGOR" class="made-by">
+      <span>made by</span>
+      <span>G0Ra</span>
+    </a>
   </body>
 
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
