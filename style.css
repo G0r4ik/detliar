@@ -252,11 +252,11 @@ a {
 /*  */
 
 @media (width < 768px) {
-  h1 {
+  .detliar {
     font-size: 70px;
   }
 
-  h2 {
+  .detliar__subtitle {
     font-size: 40px;
   }
 
