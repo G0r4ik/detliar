@@ -1,0 +1,231 @@
+.cat-btn {
+  margin: 5px;
+  transition: 3s linear;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.cat-btn__show-cat {
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #bfbab3;
+  color: grey;
+  opacity: 1;
+  transition: 0.1s linear;
+  font-size: 10px;
+  padding: 0px 0px;
+  width: 60px;
+  height: 38px;
+}
+
+.cat-btn__show-cat_hidden {
+  opacity: 0;
+  transition: 0.1s linear;
+}
+
+.cat-btn__cat {
+  position: absolute;
+  cursor: pointer;
+  padding: 25px;
+  user-select: none;
+  touch-action: none;
+
+  background: #bfbab3;
+  width: 300px;
+  height: 188px;
+  top: 0;
+  border-radius: 90px;
+  margin-top: -75px;
+  margin-left: -120px;
+  z-index: -1;
+  transform: scale(0.2) rotateX(180deg);
+  transition: 0.1s linear;
+  opacity: 0;
+}
+
+.cat-btn__cat_visible {
+  opacity: 1;
+  transition: 0.1s linear;
+  border-radius: 90px;
+  z-index: 1;
+  /* width: 150px; */
+  /* animation: cat 5s linear infinite; */
+}
+
+.cat-btn__cat:before,
+.cat-btn__cat:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: #bfbab3;
+  width: 30px;
+  height: 35px;
+  border-radius: 15px;
+  top: 170px;
+}
+.cat-btn__cat:before {
+  left: 19%;
+}
+.cat-btn__cat:after {
+  left: 69.25%;
+}
+.cat-btn__cat #the {
+  background: #bfbab3;
+  width: 40px;
+  height: 120px;
+  border-radius: 20px / 60px;
+  margin: 0 0 0 3px;
+}
+.cat-btn__cat #the:before,
+.cat-btn__cat #the:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -17px;
+  border: 25px solid #bfbab3;
+  transform: rotate(45deg);
+  border-radius: 12px;
+}
+.cat-btn__cat #the:before {
+  left: 7%;
+}
+.cat-btn__cat #the:after {
+  left: 38%;
+}
+.cat-btn__cat #cat {
+  position: absolute;
+  top: 23.5%;
+  left: 80%;
+  background: #bfbab3;
+  width: 100px;
+  height: 25px;
+  border-radius: 50px;
+  z-index: -1;
+}
+.cat-btn__cat #cat:before {
+  content: '';
+  background: #bfbab3;
+  height: 45px;
+  width: 25px;
+  border-radius: 45px;
+  position: absolute;
+  right: -5%;
+  top: -80%;
+}
+.cat-btn__cat #cat:after {
+  content: '';
+  background: grey;
+  position: absolute;
+  height: 25px;
+  width: 15px;
+  right: 24px;
+  top: 0;
+}
+.cat-btn__cat #face {
+  font-size: 22px;
+  font-weight: 800;
+  color: #4e2c11;
+  margin-top: -100px;
+  margin-left: 29%;
+}
+.cat-btn__cat #face:before,
+.cat-btn__cat #face:after {
+  content: '';
+  display: block;
+  background: #4e2c11;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 23%;
+}
+.cat-btn__cat #face:before {
+  left: 15%;
+}
+.cat-btn__cat #face:after {
+  left: 42%;
+}
+.cat-btn__cat #whisker-a,
+.cat-btn__cat #whisker-b,
+.cat-btn__cat #whisker-c,
+.cat-btn__cat #whisker-d {
+  background: #4e2c11;
+  width: 30px;
+  height: 10px;
+  border-radius: 10px;
+}
+.cat-btn__cat #whisker-a,
+.cat-btn__cat #whisker-b {
+  margin-left: -5px;
+  margin-top: -25px;
+}
+.cat-btn__cat #whisker-a {
+  transform: rotate(-10deg);
+}
+.cat-btn__cat #whisker-b {
+  transform: rotate(10deg);
+}
+.cat-btn__cat #whisker-c,
+.cat-btn__cat #whisker-d {
+  margin-left: 165px;
+}
+.cat-btn__cat #whisker-c {
+  margin-top: -10px;
+  transform: rotate(-10deg);
+}
+.cat-btn__cat #whisker-d {
+  margin-top: 5px;
+  transform: rotate(10deg);
+}
+.cat-btn__cat #stripe-a,
+.cat-btn__cat #stripe-b,
+.cat-btn__cat #stripe-c {
+  background: grey;
+  width: 10px;
+  height: 25px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+}
+.cat-btn__cat #stripe-a {
+  left: 24.5%;
+}
+.cat-btn__cat #stripe-b {
+  left: 29.5%;
+}
+.cat-btn__cat #stripe-c {
+  left: 34.5%;
+}
+.cat-btn__cat #stripe-z,
+.cat-btn__cat #stripe-y {
+  background: grey;
+  width: 20px;
+  height: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  position: absolute;
+  top: 0;
+}
+.cat-btn__cat #stripe-z {
+  left: 57%;
+}
+.cat-btn__cat #stripe-y {
+  left: 66%;
+}
+
+@keyframes cat {
+  0% {
+    /*  */
+  }
+  25% {
+    /* transform: scale(0.2) rotateX(-180deg) scaleX(-1) translateX(100%); */
+  }
+}

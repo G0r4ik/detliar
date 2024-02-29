@@ -70,4 +70,4 @@ setInterval(() => {
   const x = Math.floor(Math.random() * window.innerWidth - 100)
   const y = Math.floor(Math.random() * window.innerHeight)
   easterEgg3.style.transform = `translate(${x}px, ${y}px)`
-}, 100)
+}, 500)

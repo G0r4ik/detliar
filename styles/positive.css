@@ -8,6 +8,7 @@
   height: 100vh;
   height: 100dvh;
   height: max(100vh, 100dvh);
+  pointer-events: none;
 }
 .full-positive__text {
   margin-top: 25px;

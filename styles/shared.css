@@ -44,3 +44,7 @@
 .users-count {
   margin-bottom: 15px;
 }
+
+.cat-btn {
+  position: relative;
+}
