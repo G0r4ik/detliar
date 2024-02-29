@@ -17,7 +17,8 @@ await db.exec(`
       client_offset TEXT UNIQUE,
       textM TEXT,
       userM TEXT,
-      dateM TEXT
+      dateM TEXT,
+      imgs TEXT
   );
 `)
 
@@ -28,10 +29,14 @@ const io = new Server(server, {
     origin: '*',
   },
   connectionStateRecovery: {},
+  maxHttpBufferSize: 1e8,
 })
 
 io.on('connection', async socket => {
+  console.log('Польозватель вошел')
   socket.on('chat message', async msg => {
+    // console.log(msg)
+    console.log(1)
     const dateD = new Intl.DateTimeFormat('ru', {
       year: 'numeric',
       month: '2-digit',
@@ -41,10 +46,11 @@ io.on('connection', async socket => {
     }).format(new Date())
 
     let result = await db.run(
-      'INSERT INTO messages (textM, dateM, userM) VALUES (?, ?, ?)',
+      'INSERT INTO messages (textM, dateM, userM, imgs) VALUES (?, ?, ?, ?)',
       msg.text,
       dateD,
-      msg.user
+      msg.user,
+      JSON.stringify(msg.imgs)
     )
     io.emit('chat message', { ...msg, date: dateD }, result.lastID)
   })
@@ -52,12 +58,17 @@ io.on('connection', async socket => {
   if (!socket.recovered) {
     try {
       await db.each(
-        'SELECT id, textM, userM, dateM FROM messages WHERE id > ?',
+        'SELECT id, textM, userM, dateM, imgs FROM messages WHERE id > ?',
         [socket.handshake.auth.serverOffset || 0],
         (_err, row) => {
           socket.emit(
             'chat message',
-            { text: row.textM, user: row.userM, date: row.dateM },
+            {
+              text: row.textM,
+              user: row.userM,
+              date: row.dateM,
+              imgs: JSON.parse(row.imgs),
+            },
             row.id
           )
         }
@@ -71,6 +82,7 @@ io.on('connection', async socket => {
 
   socket.on('disconnect', () => {
     io.emit('changeUserCount', io.engine.clientsCount)
+    console.log('Пользоваетль вышел')
   })
 })
 

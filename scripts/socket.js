@@ -7,34 +7,77 @@ const text = document.querySelector('#comment-text')
 const user = document.querySelector('#comment-user')
 const messages = document.querySelector('.comments__messages')
 const sendMessage = document.querySelector('.comments__send-button')
+const screens = document.querySelector('.comments__screens')
 
 sendMessage.addEventListener('click', e => {
   e.preventDefault()
   const userValue = user.value.trim()
   const textValue = text.value.trim()
+  console.log(imgs)
   if (userValue && textValue) {
-    socket.emit('chat message', { text: textValue, user: userValue })
+    console.log(555)
+    socket.emit('chat message', { text: textValue, user: userValue, imgs })
+    screens.innerHTML = ''
+    imgs = []
     text.value = ''
+    console.log(666)
   }
 })
 
 socket.on('chat message', (msg, serverOffset) => {
+  console.log(888)
+
   const messageElement = document.createElement('div')
   messageElement.classList.add('messages__item', 'message')
+
+  const messageFiles = document.createElement('div')
+  messageFiles.classList.add('message__files')
 
   messageElement.innerHTML = `
         <div class="message__name">${msg.user}</div>
         <div class="message__text">${msg.text}</div>
-        <div class="message__date">${msg.date}</div>
         `
+
+  messageElement.appendChild(messageFiles)
+  for (const url of msg.imgs) {
+    const img = document.createElement('img')
+    img.classList.add('message__screen')
+    img.src = url
+    messageFiles.appendChild(img)
+  }
+
+  messageElement.innerHTML += `<div class="message__date">${msg.date}</div>`
 
   messages.insertBefore(messageElement, messages.children[0])
   socket.auth.serverOffset = serverOffset
 })
 
 socket.on('changeUserCount', msg => {
-  console.log(msg)
+  console.log('Пользователей на сайте: ' + msg)
   countUsers.textContent = msg
+})
+
+let imgs = []
+
+text.addEventListener('paste', function (event) {
+  const items = (event.clipboardData || event.originalEvent.clipboardData).items
+
+  for (index in items) {
+    const item = items[index]
+    if (item.kind === 'file') {
+      const blob = item.getAsFile()
+      const reader = new FileReader()
+      reader.onload = function (e) {
+        const imageData = e.target.result
+        const img = document.createElement('img')
+        img.classList.add('comments__screen')
+        img.src = imageData
+        screens.append(img)
+        imgs.push(imageData)
+      }
+      reader.readAsDataURL(blob)
+    }
+  }
 })
 
 //
