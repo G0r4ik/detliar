@@ -1,3 +1,4 @@
 const nv = process.env.NODE_ENV
-const serverURL =
-  nv === 'production' ? 'https://api.detliar.com' : 'http://localhost:30000'
+const devServer = 'https://api.detliar.com'
+const prodServer = 'http://localhost:30000'
+const serverURL = nv === 'production' ? devServer : prodServer

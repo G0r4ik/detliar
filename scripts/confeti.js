@@ -1,20 +1,20 @@
 // setInterval(() => {
-//   var duration = 15 * 1000
-//   var animationEnd = Date.now() + duration
-//   var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+//   let duration = 15 * 1000
+//   let animationEnd = Date.now() + duration
+//   let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
 
 //   function randomInRange(min, max) {
 //     return Math.random() * (max - min) + min
 //   }
 
-//   var interval = setInterval(function () {
-//     var timeLeft = animationEnd - Date.now()
+//   let interval = setInterval(function () {
+//     let timeLeft = animationEnd - Date.now()
 
 //     if (timeLeft <= 0) {
 //       return clearInterval(interval)
 //     }
 
-//     var particleCount = 50 * (timeLeft / duration)
+//     let particleCount = 50 * (timeLeft / duration)
 //     // since particles fall down, start a bit higher than random
 //     confetti({
 //       ...defaults,
@@ -29,10 +29,10 @@
 //   }, 250)
 // }, 10)
 
-// var end = Date.now() + 5 * 1000
+// let end = Date.now() + 5 * 1000
 
 // // go Buckeyes!
-// var colors = ['#bb0000', '#ffffff']
+// let colors = ['#bb0000', '#ffffff']
 
 // ;(function frame() {
 //   confetti({

@@ -13,7 +13,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans&display=swap"
       rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
 
     <!-- FAVICON -->
     <link
@@ -81,16 +81,6 @@
         <storng class="easter-egg__title">Пасхалка #1</storng>
         <div class="easter-egg__cross easter-egg__cross_1">x</div>
         <img src="./imgs/egor_enot.gif" class="easter-egg__img" />
-      </div>
-    </div>
-
-    <div class="easter-egg">
-      <button class="easter-egg__show easter-egg__show_2"></button>
-      <div class="easter-egg__content easter-egg__content_2">
-        <storng class="easter-egg__title">Пасхалка #2</storng>
-        <div class="easter-egg__cross easter-egg__cross_2">x</div>
-        <p class="">Вы выйграли ключ от игры:</p>
-        <span class="easter-egg__key"></span>
       </div>
     </div>
 
@@ -170,6 +160,19 @@
       </section>
 
       <section class="full-positive">
+        <div class="easter-egg">
+          <button class="easter-egg__show easter-egg__show_3"></button>
+          <div class="easter-egg__content easter-egg__content_3">
+            <storng class="easter-egg__title">Пасхалка #3</storng>
+            <div class="easter-egg__cross easter-egg__cross_3">x</div>
+            <video
+              autoplay
+              loop="loop"
+              src="./imgs/cat-dance.mp4"
+              alt=""
+              class="easter-egg__img" />
+          </div>
+        </div>
         <p class="full-positive__text">Всем добра и позитива</p>
         <span class="full-positive__smile">:)</span>
 
@@ -178,7 +181,15 @@
           Hate me? Click!
         </button>
       </section>
-
+      <div class="easter-egg">
+        <button class="easter-egg__show easter-egg__show_2"></button>
+        <div class="easter-egg__content easter-egg__content_2">
+          <storng class="easter-egg__title">Пасхалка #2</storng>
+          <div class="easter-egg__cross easter-egg__cross_2">x</div>
+          <p class="">Вы выйграли ключ от игры:</p>
+          <span class="easter-egg__key"></span>
+        </div>
+      </div>
       <section class="comments">
         <h3 class="title-section">Общаемся</h3>
         <p class="users-count">
@@ -207,21 +218,11 @@
     </a>
   </body>
 
+  <!-- <script src="./config.js"></script> -->
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   <script src="./scripts/socket.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script src="./scripts/confeti.js"></script>
   <script src="./scripts/index.js"></script>
-  <script src="https://www.googletagmanager.com/gtag/js?id=G-VV3WNJLYL9"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || []
-
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    console.log(gtag)
-    gtag('js', new Date())
-    gtag('config', 'G-VV3WNJLYL9')
-  </script>
+  <script src="./scripts/easterEgg.js"></script>
 </html>
