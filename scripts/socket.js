@@ -25,8 +25,6 @@ sendMessage.addEventListener('click', e => {
 })
 
 socket.on('chat message', (msg, serverOffset) => {
-  console.log(888)
-
   const messageElement = document.createElement('div')
   messageElement.classList.add('messages__item', 'message')
 
@@ -45,8 +43,15 @@ socket.on('chat message', (msg, serverOffset) => {
     img.src = url
     messageFiles.appendChild(img)
   }
+  const dateD = new Intl.DateTimeFormat('ru', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(msg.date))
 
-  messageElement.innerHTML += `<div class="message__date">${msg.date}</div>`
+  messageElement.innerHTML += `<div class="message__date">${dateD}</div>`
 
   messages.insertBefore(messageElement, messages.children[0])
   socket.auth.serverOffset = serverOffset

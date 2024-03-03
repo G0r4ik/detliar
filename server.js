@@ -35,24 +35,15 @@ const io = new Server(server, {
 io.on('connection', async socket => {
   console.log('Польозватель вошел')
   socket.on('chat message', async msg => {
-    // console.log(msg)
-    console.log(1)
-    const dateD = new Intl.DateTimeFormat('ru', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date())
-
+    const ms = new Date().toUTCString()
     let result = await db.run(
       'INSERT INTO messages (textM, dateM, userM, imgs) VALUES (?, ?, ?, ?)',
       msg.text,
-      dateD,
+      ms,
       msg.user,
       JSON.stringify(msg.imgs)
     )
-    io.emit('chat message', { ...msg, date: dateD }, result.lastID)
+    io.emit('chat message', { ...msg, date: ms }, result.lastID)
   })
 
   if (!socket.recovered) {

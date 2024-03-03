@@ -11,12 +11,12 @@
 .detliar {
   font-size: min(20vw, 150px);
   color: rgba(225, 225, 225, 0.01);
-  background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg');
-  background-image: url('https://pibig.info/uploads/posts/2021-05/1620011218_4-pibig_info-p-anime-mnogo-geroev-anime-krasivo-15.jpg');
+  /* background-image: url('https://w.forfun.com/fetch/f4/f4fd96b85d5dd4004d28d31b8521be6b.jpeg'); */
+  background-image: url('../imgs/detBg.jpg');
   background-repeat: repeat;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: headingAnimate 15s infinite;
+  animation: headingAnimate 15s linear infinite;
   text-align: center;
   text-transform: uppercase;
   font-weight: 900;
