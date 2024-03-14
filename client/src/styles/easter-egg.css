@@ -1,0 +1,88 @@
+.easter-egg__title {
+  display: block;
+  position: absolute;
+}
+.easter-egg__img {
+  border-radius: 5px;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.easter-egg__cross {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 5px;
+}
+.easter-egg__cross_3 {
+  z-index: 4;
+}
+.easter-egg__content {
+  display: none;
+  z-index: 15;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  background: #222;
+}
+.easter-egg__content_show {
+  display: block;
+}
+
+/*  */
+
+.easter-egg__show_1 {
+  box-sizing: content-box;
+  background: white;
+  width: 1px;
+  height: 1px;
+  display: block;
+  margin-left: 50px;
+  margin-top: 50px;
+  border: 2px solid #222;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  transition: 1s;
+}
+.easter-egg__show_2 {
+  opacity: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid red;
+  cursor: pointer;
+  position: absolute;
+  left: 100px;
+}
+.easter-egg__show_3 {
+  width: 10px;
+  height: 10px;
+  border: 2px solid red;
+  background: white;
+  box-shadow: 0 0 0 1px white;
+  opacity: 0.3;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 50%;
+  left: 100px;
+}
+.easter-egg__content_1 {
+  width: min(70vh, 70vw);
+  aspect-ratio: 1 / 1;
+}
+.easter-egg__content_2 {
+  padding: 20px;
+  box-shadow: burlywood 0 0 4px 0px;
+  min-width: 280px;
+}
+.easter-egg__content_2 p {
+  padding-top: 50px;
+}
+
+/*  */
+
+.easter-egg__key {
+  font-weight: 600;
+}

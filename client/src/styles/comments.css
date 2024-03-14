@@ -1,0 +1,80 @@
+.comments {
+  padding: 15px;
+}
+.comments__form {
+  border-top: 5px solid gainsboro;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 15px 0;
+}
+#comment-user {
+  max-width: 300px;
+}
+#comment-text {
+  resize: none;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.comments__send-button {
+  width: 80px;
+}
+
+.comments__screens {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.comments__screen {
+  max-height: 100px;
+  object-fit: contain;
+  border: 1px solid burlywood;
+  border-radius: 5px;
+}
+
+/* MESSAGE */
+
+.messages__item {
+  margin-bottom: 20px;
+  border: 1px solid burlywood;
+  border-radius: 10px;
+  padding: 15px;
+}
+.message__text {
+  word-break: break-word;
+  margin-bottom: 5px;
+}
+.message__name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.message__date {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.message__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.comments__messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.message__img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 5px;
+  object-fit: contain;
+  max-height: 100px;
+  box-shadow: 0 0 2px 0 rgb(255, 255, 255, 0.3);
+}
+
+.comment__fix {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+}

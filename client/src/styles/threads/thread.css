@@ -1,0 +1,166 @@
+header {
+  border-bottom: 2px solid gray;
+  height: 56px;
+  padding: 5px 0;
+}
+
+.logo {
+  height: 34px;
+}
+.user-img {
+  height: 44px;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+/*  */
+/*  */
+/*  */
+
+main {
+  display: flex;
+  gap: 0 30px;
+}
+
+.sidebar {
+  max-width: 200px;
+  border-right: 2px solid gray;
+  /* height: max-content(calc(100vh - 65px), calc(100dvh - 65px)); */
+  height: calc(100vh - 56px);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__theme-title {
+  font-size: 28px;
+}
+
+.sidebar__search {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.sidebar__top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.themes {
+  display: flex;
+  flex-direction: column;
+}
+
+.go-main {
+  /* margin-top: auto; */
+  font-size: 16px;
+}
+
+.create-theme {
+  font-size: 16px;
+
+  margin-bottom: 5px;
+  display: block;
+}
+body {
+  padding-bottom: 0 !important;
+  overflow: hidden;
+}
+* {
+  font-size: 18px;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+
+.thread {
+  margin-top: 30px;
+  width: 100%;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.thread__posts {
+  overflow-y: scroll;
+  flex: 1 1 0;
+  /* height: calc(100vh - 325px); */
+  /* height: 100vh; */
+}
+
+.thread__start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.thread__title {
+  font-size: 36px;
+}
+
+.thread__item {
+  border: 1px solid rosybrown;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.thread__user-img {
+  margin-right: 15px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.thread__user-top,
+.thread__user-bottom {
+  display: flex;
+}
+.thread__user {
+  display: flex;
+}
+
+.thread__user-date,
+.thread__user-name {
+  margin-right: 30px;
+}
+
+.thread__item {
+  padding: 15px;
+  padding-bottom: 0;
+}
+
+.thread__reacts {
+  display: flex;
+  gap: 0 15px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2.5px 5px;
+  margin-left: -15px;
+  border-radius: 2.5px;
+  max-width: 320px;
+}
+.thread__item-top {
+  margin-bottom: 15px;
+}
+
+.thread__bottom {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+/*  */
+/*  */
+/* Вынести  */
