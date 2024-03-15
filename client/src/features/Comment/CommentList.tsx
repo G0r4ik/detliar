@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import socket from '../config/socket.ts'
+import socket from '../../config/socket.ts'
 
 interface MessageInterface {
   id: number

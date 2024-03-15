@@ -1,5 +1,5 @@
 import { ClipboardEvent, useRef, useState } from 'react'
-import socket from '../config/socket.ts'
+import socket from '../../config/socket.ts'
 
 function CommentForm() {
   const commentName = useRef<HTMLInputElement>(null)

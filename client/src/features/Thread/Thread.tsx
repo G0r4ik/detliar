@@ -1,4 +1,4 @@
-import CommentForm from './CommentForm'
+import CommentForm from '../Comment/CommentForm'
 // import emojis from 'emojis-list'
 
 export default function Thread() {

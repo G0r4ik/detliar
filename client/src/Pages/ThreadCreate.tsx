@@ -4,9 +4,9 @@ import api from '../config/API'
 export default function ThreadCreate() {
   async function createThread() {
     await api.post('/createThread', {
-      shortName: shortName.current.value,
-      fullName: fullName.current.value,
-      description: description.current.value,
+      shortName: shortName.current?.value,
+      fullName: fullName.current?.value,
+      description: description.current?.value,
       authorId: 1, // FIXME
     })
 

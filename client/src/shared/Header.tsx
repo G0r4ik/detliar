@@ -11,7 +11,7 @@ export default function Header() {
       <div className='container'>
         <div className='header__inner'>
           <img src='/logo.png' alt='' className='logo' />
-          <input placeholder='поиск...' type='text' className='search' />
+          {/* <input placeholder='поиск...' type='text' className='search' /> */}
           <SignedOut>
             <SignInButton />
           </SignedOut>
