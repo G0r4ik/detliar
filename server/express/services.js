@@ -1,4 +1,4 @@
-import { LoginLinkModel, ThreadModel, UserModel } from '../db/mongo.js'
+import { ThreadModel, UserModel } from '../db/mongo.js'
 
 class Services {
   async getThreads() {

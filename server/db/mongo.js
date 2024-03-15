@@ -123,17 +123,6 @@ const BanSchema = new Schema({
   whoGaveBan: { type: mongoId, ref: 'User', required: true },
 })
 
-const RegistrationLinkSchema = new Schema({
-  code: { type: String, required: true, unique: true },
-  user: { type: mongoId, ref: 'User', required: true },
-  timeOfEnd: { type: Date, required: true },
-})
-
-const LoginLinkSchema = new Schema({
-  code: { type: String, required: true, unique: true },
-  timeOfEnd: { type: Date, required: true },
-})
-
 //
 //
 //
@@ -162,12 +151,6 @@ export const ReactionModel = mongoose.model('Reaction', ReactionSchema)
 export const VotesThreadModel = mongoose.model('VotesThread', VotesThreadSchema)
 export const EmojiPostsModel = mongoose.model('EmojiPosts', EmojiPostsSchema)
 export const VotesPostsModel = mongoose.model('VotesPosts', VotesPostsSchema)
-
-export const LoginLinkModel = mongoose.model('LoginLink', LoginLinkSchema)
-export const RegistrationLinkModel = mongoose.model(
-  'RegistrationLink',
-  RegistrationLinkSchema
-)
 
 async function createUser(username, email, userImg) {
   try {
@@ -276,28 +259,3 @@ async function createBan(userId, ip, start, end, type, reason, whoGaveBan) {
 }
 
 // const ban1 = await createBan('user1_id', '127.0.0.1', '2024-03-10T00:00:00.000Z', '2024-03-12T23:59:59.000Z', 0, 'Spamming in threads', 'user2_id');
-
-async function createLoginLink(code) {
-  try {
-    const loginLink = new LoginLinkModel({ code })
-    return await loginLink.save()
-  } catch (error) {
-    console.log('Error creating login link:', error)
-  }
-}
-
-// const loginLink1 = await createLoginLink('unique_login_code');
-
-async function createRegistrationLink(code, userId) {
-  try {
-    const registrationLink = new RegistrationLinkModel({ code, userId })
-    return await registrationLink.save()
-  } catch (error) {
-    console.log('Error creating registration link:', error)
-  }
-}
-
-// const registrationLink1 = await createRegistrationLink(
-//   'unique_registration_code',
-//   'user1_id'
-// )

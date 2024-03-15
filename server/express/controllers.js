@@ -139,33 +139,6 @@ class Controllers {
     }
   }
 
-  async createLoginLink(req, res, next) {
-    try {
-      const { code } = req.body
-      checkParams({ code })
-      const loginLink = await services.createLoginLink(code)
-      res.json(loginLink)
-    } catch (error) {
-      errorHandler(error, 'createLoginLink')
-      next(error)
-    }
-  }
-
-  async createRegistrationLink(req, res, next) {
-    try {
-      const { code, userId } = req.body
-      checkParams({ code, userId })
-      const registrationLink = await services.createRegistrationLink(
-        code,
-        userId
-      )
-      res.json(registrationLink)
-    } catch (error) {
-      errorHandler(error, 'createRegistrationLink')
-      next(error)
-    }
-  }
-
   //
 
   async getVotesPost(req, res, next) {
@@ -240,56 +213,6 @@ class Controllers {
   }
 
   //
-  async getLoginLink(req, res, next) {
-    try {
-      const { code } = req.params
-      const loginLink = await services.getLoginLink(code)
-      res.json(loginLink)
-    } catch (error) {
-      errorHandler(error, 'getLoginLink')
-      next(error)
-    }
-  }
-
-  async createLoginLink(req, res, next) {
-    try {
-      checkParams({
-        /* required parameters for createLoginLink */
-      })
-      const loginLink = await services.createLoginLink(/* login link data */)
-      res.json(loginLink)
-    } catch (error) {
-      errorHandler(error, 'createLoginLink')
-      next(error)
-    }
-  }
-
-  //
-
-  async getRegistrationLink(req, res, next) {
-    try {
-      const { code } = req.params
-      const registrationLink = await services.getRegistrationLink(code)
-      res.json(registrationLink)
-    } catch (error) {
-      errorHandler(error, 'getRegistrationLink')
-      next(error)
-    }
-  }
-
-  async createRegistrationLink(req, res, next) {
-    try {
-      checkParams({
-        /* required parameters for createRegistrationLink */
-      })
-      const registrationLink =
-        await services.createRegistrationLink(/* registration link data */)
-      res.json(registrationLink)
-    } catch (error) {
-      errorHandler(error, 'createRegistrationLink')
-      next(error)
-    }
-  }
 
   //
   //
