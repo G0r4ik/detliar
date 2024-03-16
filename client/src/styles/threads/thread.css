@@ -27,19 +27,25 @@ header {
 /*  */
 /*  */
 
-main {
+.thread-page * {
+  font-size: 18px;
+}
+.thread-page {
   display: flex;
   gap: 0 30px;
+  overflow: hidden;
 }
 
 .sidebar {
-  max-width: 200px;
+  width: 200px;
   border-right: 2px solid gray;
-  /* height: max-content(calc(100vh - 65px), calc(100dvh - 65px)); */
   height: calc(100vh - 56px);
   padding: 15px;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 56px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .sidebar__theme-title {
   font-size: 28px;
@@ -72,19 +78,22 @@ main {
   margin-bottom: 5px;
   display: block;
 }
-body {
-  padding-bottom: 0 !important;
-  overflow: hidden;
-}
-* {
-  font-size: 18px;
-}
 
 /*  */
 /*  */
 /*  */
 /*  */
 
+.create-post {
+  width: 100%;
+  height: calc(100vh - 56px);
+  overflow-y: scroll;
+  margin-top: 30px;
+}
+
+#createPostShortName {
+  width: 100px;
+}
 .thread {
   margin-top: 30px;
   width: 100%;
@@ -105,6 +114,10 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+}
+
+.title {
+  font-size: 36px;
 }
 .thread__title {
   font-size: 36px;

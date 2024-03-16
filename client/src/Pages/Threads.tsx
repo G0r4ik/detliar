@@ -1,7 +1,6 @@
 import Header from '../shared/Header'
-// import '../styles/threads/thread.css'
 import MyHead from '../shared/MyHead'
-import Sidebar from '../features/SidebarThemes/Sidebar'
+import Sidebar from '../features/Thread/SidebarThread'
 import Thread from '../features/Thread/Thread'
 
 export default function ThreadPage() {
@@ -9,10 +8,10 @@ export default function ThreadPage() {
 
   return (
     <>
-      <MyHead styleLinks={['src/styles/threads/thread.css']}></MyHead>
+      <MyHead styleLinks={['/threads/thread.css']}></MyHead>
       <Header />
-      <main>
-        <Sidebar threads={[]} />
+      <main className='thread-page'>
+        <Sidebar />
         <Thread />
       </main>
     </>

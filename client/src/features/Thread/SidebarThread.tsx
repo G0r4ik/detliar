@@ -1,4 +1,14 @@
-export default function Sidebar({ threads }) {
+import { useEffect } from 'react'
+import threadsStore from '../../config/store.ts'
+import { Link } from 'react-router-dom'
+
+export default function Sidebar() {
+  const { threads, getThreads } = threadsStore()
+
+  useEffect(() => {
+    getThreads()
+  }, [getThreads])
+
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
@@ -7,22 +17,23 @@ export default function Sidebar({ threads }) {
       </div>
       {/* <input className='sidebar__search' placeholder='поиск' /> */}
       <div className='themes'>
-        {threads.map(theme => (
+        {threads.map(thread => (
           <a
             className='sidebar__theme-name'
-            key={theme._id}
-            href={`${theme.shortName}`}>
-            {theme.shortName}
+            key={thread._id}
+            href={`${thread.shortName}`}>
+            {thread.shortName}
           </a>
         ))}
       </div>
+
       <div style={{ marginTop: ' auto' }}>
-        <a href='/' className='create-theme'>
+        <Link to='/threads/create' className='create-theme'>
           Создать тему
-        </a>
-        <a href='/' className='go-main'>
+        </Link>
+        <Link to='/' className='go-main'>
           Обратно
-        </a>
+        </Link>
       </div>
     </div>
   )

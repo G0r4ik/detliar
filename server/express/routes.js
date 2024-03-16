@@ -4,7 +4,7 @@ const router = express.Router()
 
 // ThreadSchema
 router.get('/getThreads', controllers.getThreads)
-router.post('/createThread', (req, res) => controllers.createThread)
+router.post('/createThread', controllers.createThread)
 router.delete('/deleteThread', (req, res) => res.json(111))
 
 // PostSchema

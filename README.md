@@ -1,5 +1,8 @@
 # tasks
 
+<https://www.twitch.tv/detliar666>
+kinopois
+
 аим трекер
 казино
 тикток

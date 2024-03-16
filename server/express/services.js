@@ -6,6 +6,17 @@ class Services {
     console.log(threads)
     return threads
   }
+
+  async createThread(shortName, fullName, authorId, description) {
+    const thread = await ThreadModel.create({
+      shortName,
+      fullName,
+      authorId,
+      description,
+    })
+
+    thread.save()
+  }
 }
 
 export default new Services()

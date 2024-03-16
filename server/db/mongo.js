@@ -29,7 +29,7 @@ const ThreadSchema = new Schema({
     minlength: 2,
     maxlength: 50,
   },
-  authorId: { type: mongoId, ref: 'User', required: true },
+  authorId: { type: String, required: true },
   description: { type: String, trim: true, maxlength: 500 },
   lastUpdateDate: { type: Date, default: Date.now },
   creationDate: { type: Date, default: Date.now },

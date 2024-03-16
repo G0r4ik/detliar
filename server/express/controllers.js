@@ -1,3 +1,4 @@
+import { checkParameters } from '../shared/helpers.js'
 import services from './services.js'
 
 class Controllers {
@@ -20,9 +21,8 @@ class Controllers {
   }
   async createThread(req, res, next) {
     try {
-      console.log(1)
       const { shortName, fullName, authorId, description } = req.body
-      checkParams({ shortName, fullName, authorId })
+      checkParameters('createThread', { shortName, fullName, authorId })
       const threads = await services.createThread(
         shortName,
         fullName,
