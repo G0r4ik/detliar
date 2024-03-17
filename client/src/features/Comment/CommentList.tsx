@@ -19,13 +19,6 @@ function normalizeDate(date: string) {
   }).format(new Date(date))
 }
 
-// socket.on('chat message', msg => {
-//   console.log(msg)
-
-//   // socket.auth.serverOffset = serverOffset
-//   // setMessages(oldMessages => [...oldMessages, msg])
-// })
-
 function closeImg(e) {
   console.log(e)
 
@@ -45,20 +38,15 @@ export default function CommentList() {
   const [messages, setMessages] = useState<MessageInterface[]>([])
 
   useEffect(() => {
-    let isMounted = true
-
-    socket.on('chat message', msg => {
-      if (isMounted) {
-        console.log(msg)
-        setMessages(oldMessages => [...oldMessages, msg])
-      }
-    })
-
-    return () => {
-      console.log('end')
-
-      isMounted = false
-    }
+    // socket.on('chat message', msg => {
+    //   if (isMounted) {
+    //     console.log(msg)
+    //     setMessages(oldMessages => [...oldMessages, msg])
+    //   }
+    // })
+    // socket.on(`message`, msg => {
+    //   console.log(msg)
+    // })
   }, [])
 
   return (

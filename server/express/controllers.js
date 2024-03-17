@@ -42,6 +42,7 @@ class Controllers {
       )
       res.json(threads)
     } catch (error) {
+      console.log(error)
       errorHandler(error, 'createThread')
       next(error)
     }

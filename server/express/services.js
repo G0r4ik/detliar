@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { PostModel, ThreadModel, UserModel } from '../db/mongo.js'
 import clerkClient from '@clerk/clerk-sdk-node'
+import { io } from '../socket.js'
 
 class Services {
   async getThreads() {
@@ -14,6 +15,7 @@ class Services {
   }
 
   async createThread(shortName, fullName, authorId, description) {
+    console.log(shortName)
     const thread = await ThreadModel.create({
       shortName,
       fullName,
@@ -22,66 +24,66 @@ class Services {
     })
 
     thread.save()
+    console.log()
+    io.emit('create_thread', thread)
   }
 
-  //
-  //
-  //
-  //
-
   async getPosts(idThread) {
-    // const thread = await ThreadModel.findOne({ shortName: `/${idThread}` })
-    // console.log(thread)
-    const posts1 = await PostModel.find({ threadId: `${idThread}` })
-    const posts = JSON.parse(JSON.stringify(posts1))
-    console.log('getPosts')
-    // console.log(posts)
-    for (let i = 0; i < posts.length; i++) {
-      console.log('getPosts for')
+    try {
+      const posts = await PostModel.find({ threadId: idThread })
 
-      if (posts[i].authorId) {
-        const user = await clerkClient.users.getUser(posts[i].authorId)
-        posts[i].user = user
-      } else {
-        posts[i].user = {
-          username: posts[i].anonName,
+      // Парсинг и клонирование объектов для избежания мутации данных
+      const parsedPosts = JSON.parse(JSON.stringify(posts))
+
+      // Обработка каждого поста
+      for (let i = 0; i < parsedPosts.length; i++) {
+        const post = parsedPosts[i]
+        if (post.authorId) {
+          const user = await clerkClient.users.getUser(post.authorId)
+          post.user = user
+        } else {
+          // Если автор не указан, создаем заглушку пользователя
+          post.user = {
+            username: post.anonName || 'Anonymous',
+          }
         }
       }
+
+      return parsedPosts
+    } catch (error) {
+      console.error('Error getting posts:', error)
+      throw error
     }
-    return posts
   }
 
   async createPost(threadId, content, authorId, anonName) {
-    const thread = await ThreadModel.findOne({ shortName: `/${threadId}` })
-    const newV = thread.numberOfPosts + 1
-    thread.updateOne(
-      await ThreadModel.updateOne(
+    console.log('create 2x')
+    try {
+      const thread = await ThreadModel.findOneAndUpdate(
         { shortName: `/${threadId}` },
-        { $set: { numberOfPosts: newV } },
-        { upsert: true }
+        { $inc: { numberOfPosts: 1 } },
+        { new: true, upsert: true }
       )
-    )
 
-    let posts
-    if (authorId) {
-      posts = await PostModel.create({
-        postId: new mongoose.Types.ObjectId(),
+      let user
+      if (authorId) {
+        user = await clerkClient.users.getUser(authorId)
+      }
+
+      const postData = {
         threadId,
-        authorId,
         content,
-        number: newV,
-      })
-    } else {
-      posts = await PostModel.create({
-        postId: new mongoose.Types.ObjectId(),
-        threadId,
-        anonName,
-        content,
-        number: newV,
-      })
+        number: thread.numberOfPosts,
+        ...(authorId ? { authorId } : { anonName }),
+      }
+
+      const post = await PostModel.create(postData)
+
+      return { ...post._doc, user }
+    } catch (error) {
+      console.error('Error creating post:', error)
+      throw error
     }
-    posts.save()
-    return posts
   }
 }
 

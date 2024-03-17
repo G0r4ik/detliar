@@ -1,4 +1,4 @@
-import { ClipboardEvent, useRef, useState } from 'react'
+import { ClipboardEvent, useEffect, useRef, useState } from 'react'
 import socket from '../../config/socket.ts'
 import { useUser } from '@clerk/clerk-react'
 import api from '../../config/API.ts'
@@ -9,26 +9,39 @@ function CommentForm({ shorName }) {
   const commentText = useRef<HTMLTextAreaElement>(null)
   const screens = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+    // socket.on(`message`, msg => {
+    //   console.log(msg)
+    // })
+  }, [])
+
   const [imgs, setImgs] = useState<string[]>([])
 
-  function sendMessage(e: React.MouseEvent<HTMLButtonElement>): void {
-    e.preventDefault()
-
+  function keyDown(event) {
+    if (event.code === 'Enter' && !event.shiftKey) sendMessage()
+  }
+  function sendMessage(): void {
     if ((commentName.current || isSignedIn) && commentText.current) {
       const userValue = commentName?.current?.value.trim()
       const textValue = commentText.current.value.trim()
 
       if (textValue) {
-        // socket.emit('chat message', { text: textValue, user: userValue, imgs })
-
-        api.post(`/threads/${shorName}/posts`, {
+        socket.emit(`message`, shorName, {
           anonName: userValue,
           content: textValue,
           authorId: user?.id,
         })
+        console.log('scoketEmiit')
+
+        // api.post(`/threads/${shorName}/posts`, {
+        //   anonName: userValue,
+        //   content: textValue,
+        //   authorId: user?.id,
+        // })
         setImgs([])
         if (commentName.current) commentName.current.value = ''
         commentText.current.value = ''
+        commentText.current.value.trim()
       }
     }
   }
@@ -64,6 +77,7 @@ function CommentForm({ shorName }) {
           ref={commentText}
           onPaste={event => pasteFile(event)}
           rows={2}
+          onKeyDown={keyDown}
           placeholder='Type your message here.'
           id='comment-text'
         />

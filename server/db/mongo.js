@@ -24,7 +24,6 @@ const ThreadSchema = new Schema({
   fullName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
     minlength: 2,
     maxlength: 50,
@@ -44,86 +43,109 @@ const ThreadSchema = new Schema({
   hasAccess: [{ type: mongoId, ref: 'User' }],
 })
 
-const ReactionSchema = new Schema({
-  react: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 1,
-    maxlength: 3,
+const ReactionSchema = new Schema(
+  {
+    react: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 1,
+      maxlength: 3,
+    },
   },
-})
+  { strict: false }
+)
 
-const PostSchema = new Schema({
-  postId: { type: mongoId, required: true },
-  threadId: { type: String, ref: 'Thread', required: true },
-  number: { type: Number, required: true },
-  anonName: { type: String, trim: true, maxlength: 50 },
-  authorId: { type: String, required: false },
-  content: { type: String, required: true, trim: true, maxlength: 10000 },
-  editHistory: [{ type: String, trim: true, maxlength: 10000 }],
-  creationDate: { type: Date, default: Date.now },
-  numberOfLikes: { type: Number, default: 0 },
-  numberOfDislikes: { type: Number, default: 0 },
-  replies: { type: mongoId, ref: 'Post' },
-  files: [{ type: mongoId, ref: 'File' }],
-})
-
-const FileSchema = new Schema({
-  filename: { type: String, required: true },
-  contentType: { type: String, required: true },
-})
-
-const VotesThreadSchema = new Schema({
-  userId: { type: mongoId, ref: 'User', required: true },
-  threadId: { type: mongoId, ref: 'Thread', required: true },
-  vote: { type: Number, required: true, enum: [-1, +1] },
-})
-
-const EmojiPostsSchema = new Schema({
-  userId: { type: mongoId, ref: 'User', required: true },
-  threadId: { type: mongoId, ref: 'Thread', required: true },
-  postId: { type: mongoId, ref: 'Post', required: true },
-  emojiId: { type: mongoId, ref: 'Emoji', required: true },
-})
-
-const VotesPostsSchema = new Schema({
-  userId: { type: mongoId, ref: 'User', required: true },
-  threadId: { type: mongoId, ref: 'Thread', required: true },
-  postId: { type: mongoId, ref: 'Post', required: true },
-  vote: { type: Number, required: true, enum: [-1, +1] },
-})
-
-const UserSchema = new Schema({
-  username: { type: String, required: true, trim: true, maxlength: 50 },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
+const PostSchema = new Schema(
+  {
+    threadId: { type: String, ref: 'Thread', required: true },
+    number: { type: Number, required: true },
+    anonName: { type: String, trim: true, maxlength: 50 },
+    authorId: { type: String, required: false },
+    content: { type: String, required: true, trim: true, maxlength: 10000 },
+    editHistory: [{ type: String, trim: true, maxlength: 10000 }],
+    creationDate: { type: Date, default: Date.now },
+    numberOfLikes: { type: Number, default: 0 },
+    numberOfDislikes: { type: Number, default: 0 },
+    replies: { type: mongoId, ref: 'Post' },
+    files: [{ type: mongoId, ref: 'File' }],
   },
-  userImg: { type: String, trim: true },
-  karma: { type: Number, default: 0 },
-  registrationDate: { type: Date, default: Date.now },
-  lastLoginDate: { type: Date, default: Date.now },
-  numberOfPosts: { type: Number, default: 0 },
-  numberOfComments: { type: Number, default: 0 },
-  respect: [{ type: mongoId, ref: 'User' }],
-  hatred: [{ type: mongoId, ref: 'User' }],
-  subscriptions: [{ type: mongoId, ref: 'Subscription' }],
-  roles: [{ type: String, enum: ['user', 'moderator', 'admin'] }],
-})
+  { strict: false }
+)
 
-const BanSchema = new Schema({
-  userId: { type: mongoId, ref: 'User', required: true },
-  ip: { type: String, trim: true },
-  start: { type: Date, required: true },
-  end: { type: Date },
-  type: { type: Number, required: true, enum: [0, 1] },
-  reason: { type: String, trim: true },
-  whoGaveBan: { type: mongoId, ref: 'User', required: true },
-})
+const FileSchema = new Schema(
+  {
+    filename: { type: String, required: true },
+    contentType: { type: String, required: true },
+  },
+  { strict: false }
+)
+
+const VotesThreadSchema = new Schema(
+  {
+    userId: { type: mongoId, ref: 'User', required: true },
+    threadId: { type: mongoId, ref: 'Thread', required: true },
+    vote: { type: Number, required: true, enum: [-1, +1] },
+  },
+  { strict: false }
+)
+
+const EmojiPostsSchema = new Schema(
+  {
+    userId: { type: mongoId, ref: 'User', required: true },
+    threadId: { type: mongoId, ref: 'Thread', required: true },
+    postId: { type: mongoId, ref: 'Post', required: true },
+    emojiId: { type: mongoId, ref: 'Emoji', required: true },
+  },
+  { strict: false }
+)
+
+const VotesPostsSchema = new Schema(
+  {
+    userId: { type: mongoId, ref: 'User', required: true },
+    threadId: { type: mongoId, ref: 'Thread', required: true },
+    postId: { type: mongoId, ref: 'Post', required: true },
+    vote: { type: Number, required: true, enum: [-1, +1] },
+  },
+  { strict: false }
+)
+
+const UserSchema = new Schema(
+  {
+    username: { type: String, required: true, trim: true, maxlength: 50 },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+    },
+    userImg: { type: String, trim: true },
+    karma: { type: Number, default: 0 },
+    registrationDate: { type: Date, default: Date.now },
+    lastLoginDate: { type: Date, default: Date.now },
+    numberOfPosts: { type: Number, default: 0 },
+    numberOfComments: { type: Number, default: 0 },
+    respect: [{ type: mongoId, ref: 'User' }],
+    hatred: [{ type: mongoId, ref: 'User' }],
+    subscriptions: [{ type: mongoId, ref: 'Subscription' }],
+    roles: [{ type: String, enum: ['user', 'moderator', 'admin'] }],
+  },
+  { strict: false }
+)
+
+const BanSchema = new Schema(
+  {
+    userId: { type: mongoId, ref: 'User', required: true },
+    ip: { type: String, trim: true },
+    start: { type: Date, required: true },
+    end: { type: Date },
+    type: { type: Number, required: true, enum: [0, 1] },
+    reason: { type: String, trim: true },
+    whoGaveBan: { type: mongoId, ref: 'User', required: true },
+  },
+  { strict: false }
+)
 
 //
 //

@@ -21,11 +21,18 @@ interface Threads {
 }
 
 type Actions = {
-  getThreads: () => void
+  setThreads: (data: Threads) => void // Замените any на тип вашего параметра data
+  getThreads: () => Promise<void>
 }
 
 const useStore = create<State & Actions>(set => ({
   threads: [],
+
+  setThreads: (data: Threads) => {
+    set(state => ({
+      threads: [...state.threads, data],
+    }))
+  },
 
   getThreads: async () => {
     const response = await api.get('/getThreads')

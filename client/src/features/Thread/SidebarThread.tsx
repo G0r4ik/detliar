@@ -1,12 +1,17 @@
 import { useEffect } from 'react'
 import threadsStore from '../../config/store.ts'
 import { Link } from 'react-router-dom'
+import socket from '../../config/socket.ts'
 
 export default function Sidebar() {
-  const { threads, getThreads } = threadsStore()
+  const { threads, getThreads, setThreads } = threadsStore()
 
   useEffect(() => {
     getThreads()
+
+    socket.on(`create_thread`, msg => {
+      setThreads(msg)
+    })
   }, [getThreads])
 
   return (

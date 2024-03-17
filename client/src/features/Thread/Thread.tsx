@@ -4,6 +4,7 @@ import api from '../../config/API'
 import { useEffect, useState } from 'react'
 import { PostSchema, ThreadSchema } from '../../types'
 import { useAuth } from '@clerk/clerk-react'
+import socket from '../../config/socket'
 // import emojis from 'emojis-list'
 // console.log(emojis)
 
@@ -28,6 +29,7 @@ export default function Thread() {
   const { getToken } = useAuth()
 
   useEffect(() => {
+    socket.emit('go_thread', idThread)
     getThreadInfo()
     async function getThreadInfo() {
       const thread = await api.get(`/getThreadInfo/${idThread}`, {
@@ -36,6 +38,18 @@ export default function Thread() {
       setThread(thread.data)
       const posts = await api(`/threads/${idThread}/posts`)
       setPosts(posts.data)
+    }
+
+    socket.on('message', msg => {
+      console.log(msg)
+      console.log(2)
+
+      // socket.auth.serverOffset = serverOffset
+      setPosts(oldMessages => [...oldMessages, msg])
+    })
+
+    return () => {
+      socket.emit('leave_thread', idThread)
     }
   }, [idThread, getToken])
 
@@ -46,6 +60,7 @@ export default function Thread() {
           <div className='thread__start'>
             <h1 className='thread__title'>
               <strong>{thread.shortName}</strong>
+              <br />
               {thread.fullName}
             </h1>
             <div className='thread__info'>icon</div>
@@ -53,18 +68,18 @@ export default function Thread() {
           <pre className='thread__description'>{thread.description}</pre>
           <div className='thread__posts'>
             {posts?.map(item => (
-              <div className='thread__item' key={item.postId}>
+              <div className='thread__item' key={item._id}>
                 <div className='thread__item-top'>
                   <div className='thread__item-user thread__user'>
                     <img
-                      src={item.user.imageUrl || '/imgs/anon.png'}
+                      src={item?.user?.imageUrl || '/imgs/anon.png'}
                       alt=''
                       className='thread__user-img'
                     />
                     <div>
                       <div className='thread__user-top'>
                         <div className='thread__user-name'>
-                          {item.user.username || item.anonName}
+                          {item?.user?.username || item.anonName}
                         </div>
                         {/* <div className='thread__user-carma'>{item.user}</div> */}
                       </div>
@@ -83,15 +98,15 @@ export default function Thread() {
               <img src='' alt='' className='thread__img' />
             </div> */}
                 </div>
-                <p className='thread__text'>{item.content}</p>
+                <pre className='thread__text'>{item.content}</pre>
                 <div className='thread__bottom'>
-                  <div className='thread__reacts'>
+                  {/* <div className='thread__reacts'>
                     <span className='thread__react'>😀 - 5</span>
                     <span className='thread__react'>💩 - 2</span>
                     <span className='thread__react'>✋ - 1</span>
                     <span className='thread__react-more'>...</span>
                   </div>
-                  <button className='thread__reply'>Ответить</button>
+                  <button className='thread__reply'>Ответить</button> */}
                 </div>
               </div>
             ))}
