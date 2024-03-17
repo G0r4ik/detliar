@@ -20,7 +20,6 @@ export default function initSockets(server) {
         msg.user,
         JSON.stringify(msg.imgs)
       )
-      console.log('quety')
       io.emit(
         'chat message',
         { ...msg, date: ms, id: result.lastID },
@@ -34,8 +33,6 @@ export default function initSockets(server) {
           'SELECT id, textM, userM, dateM, imgs FROM messages WHERE id > ?',
           [socket.handshake.auth.serverOffset || 0],
           (_err, row) => {
-            console.log('querry')
-
             socket.emit(
               'chat message',
               {

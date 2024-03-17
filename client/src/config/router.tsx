@@ -10,17 +10,21 @@ const router = createBrowserRouter([
     element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
-  {
-    path: '/threads/',
-    element: <ThreadPage />,
-  },
+  // {
+  //   // path: '/threads/',
+  //   // element: <ThreadPage />,
+  // },
   {
     path: '/threads/create',
     element: <ThreadCreate />,
   },
   {
-    path: '/threads/:idPost',
-    element: <div>Hello world!</div>,
+    path: '/threads/:idThread',
+    loader: async ({ params }) => {
+      const idThread = params.idThread
+      return { idThread }
+    },
+    element: <ThreadPage />,
   },
 ])
 

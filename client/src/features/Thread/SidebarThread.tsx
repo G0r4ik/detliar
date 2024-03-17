@@ -18,12 +18,12 @@ export default function Sidebar() {
       {/* <input className='sidebar__search' placeholder='поиск' /> */}
       <div className='themes'>
         {threads.map(thread => (
-          <a
+          <Link
             className='sidebar__theme-name'
             key={thread._id}
-            href={`${thread.shortName}`}>
+            to={`/threads${thread.shortName}`}>
             {thread.shortName}
-          </a>
+          </Link>
         ))}
       </div>
 

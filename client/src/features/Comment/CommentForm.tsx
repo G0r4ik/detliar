@@ -1,7 +1,10 @@
 import { ClipboardEvent, useRef, useState } from 'react'
 import socket from '../../config/socket.ts'
+import { useUser } from '@clerk/clerk-react'
+import api from '../../config/API.ts'
 
-function CommentForm() {
+function CommentForm({ shorName }) {
+  const { user, isSignedIn } = useUser()
   const commentName = useRef<HTMLInputElement>(null)
   const commentText = useRef<HTMLTextAreaElement>(null)
   const screens = useRef<HTMLDivElement>(null)
@@ -11,14 +14,20 @@ function CommentForm() {
   function sendMessage(e: React.MouseEvent<HTMLButtonElement>): void {
     e.preventDefault()
 
-    if (commentName.current && commentText.current) {
-      const userValue = commentName.current.value.trim()
+    if ((commentName.current || isSignedIn) && commentText.current) {
+      const userValue = commentName?.current?.value.trim()
       const textValue = commentText.current.value.trim()
 
-      if (userValue && textValue) {
-        socket.emit('chat message', { text: textValue, user: userValue, imgs })
+      if (textValue) {
+        // socket.emit('chat message', { text: textValue, user: userValue, imgs })
+
+        api.post(`/threads/${shorName}/posts`, {
+          anonName: userValue,
+          content: textValue,
+          authorId: user?.id,
+        })
         setImgs([])
-        commentName.current.value = ''
+        if (commentName.current) commentName.current.value = ''
         commentText.current.value = ''
       }
     }
@@ -42,12 +51,14 @@ function CommentForm() {
 
   return (
     <div className='comments__form'>
-      <input
-        ref={commentName}
-        type='text'
-        placeholder='Type your name here.'
-        id='comment-user'
-      />
+      {isSignedIn || (
+        <input
+          ref={commentName}
+          type='text'
+          placeholder='Type your name here.'
+          id='comment-user'
+        />
+      )}
       <div className='comment__fix'>
         <textarea
           ref={commentText}

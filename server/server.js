@@ -5,7 +5,9 @@ import router from './express/routes.js'
 import cors from 'cors'
 const app = express()
 const server = createServer(app)
-
+// require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config()
 initSockets(server)
 
 app.use(json())

@@ -28,7 +28,6 @@ const useStore = create<State & Actions>(set => ({
   threads: [],
 
   getThreads: async () => {
-    console.log(1)
     const response = await api.get('/getThreads')
     set({ threads: response.data })
   },

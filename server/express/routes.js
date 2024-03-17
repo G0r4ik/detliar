@@ -1,10 +1,23 @@
 import express from 'express'
 import controllers from './controllers.js'
+import {
+  ClerkExpressRequireAuth,
+  ClerkExpressWithAuth,
+} from '@clerk/clerk-sdk-node'
 const router = express.Router()
 
 // ThreadSchema
 router.get('/getThreads', controllers.getThreads)
-router.post('/createThread', controllers.createThread)
+router.get(
+  '/getThreadInfo/:idThread',
+  ClerkExpressWithAuth(),
+  controllers.getThreadInfo
+)
+router.post(
+  '/createThread',
+  ClerkExpressRequireAuth(),
+  controllers.createThread
+)
 router.delete('/deleteThread', (req, res) => res.json(111))
 
 // PostSchema

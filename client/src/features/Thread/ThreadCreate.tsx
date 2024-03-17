@@ -1,13 +1,15 @@
 import api from '../../config/API'
 import { useRef } from 'react'
 import Textarea from '../../shared/Textarea'
-import { useUser } from '@clerk/clerk-react'
+import { useAuth, useUser } from '@clerk/clerk-react'
 
 export default function ThreadCreate() {
   const shortName = useRef<HTMLInputElement>(null)
   const fullName = useRef<HTMLInputElement>(null)
   const description = useRef<HTMLTextAreaElement>(null)
   const { isSignedIn, user, isLoaded } = useUser()
+
+  const { getToken } = useAuth()
 
   async function createThread() {
     const shortNameValue = shortName.current.value
@@ -27,12 +29,18 @@ export default function ThreadCreate() {
       описание: 1-1000 символов
       `)
     } else {
-      await api.post('/createThread', {
-        shortName: shortNameValue,
-        fullName: fullNameValue,
-        description: descriptionValue,
-        authorId: user.id, // FIXME
-      })
+      await api.post(
+        '/createThread',
+        {
+          shortName: shortNameValue,
+          fullName: fullNameValue,
+          description: descriptionValue,
+          authorId: user?.id, // FIXME
+        },
+        {
+          headers: { Authorization: `Bearer ${await getToken()}` },
+        }
+      )
     }
   }
 

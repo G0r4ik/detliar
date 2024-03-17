@@ -95,15 +95,20 @@ header {
   width: 100px;
 }
 .thread {
-  margin-top: 30px;
+  padding-top: 30px;
   width: 100%;
   padding-right: 15px;
+  height: calc(100vh - 56px);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
+.thread__description {
+  margin-bottom: 25px;
+}
 .thread__posts {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   flex: 1 1 0;
   /* height: calc(100vh - 325px); */
   /* height: 100vh; */
@@ -177,3 +182,7 @@ header {
 /*  */
 /*  */
 /* Вынести  */
+
+.cl-userButtonPopoverFooter {
+  display: none;
+}

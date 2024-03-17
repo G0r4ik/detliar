@@ -55,9 +55,11 @@ const ReactionSchema = new Schema({
 })
 
 const PostSchema = new Schema({
-  threadId: { type: mongoId, ref: 'Thread', required: true },
+  postId: { type: mongoId, required: true },
+  threadId: { type: String, ref: 'Thread', required: true },
+  number: { type: Number, required: true },
   anonName: { type: String, trim: true, maxlength: 50 },
-  authorId: { type: mongoId, ref: 'User', required: false },
+  authorId: { type: String, required: false },
   content: { type: String, required: true, trim: true, maxlength: 10000 },
   editHistory: [{ type: String, trim: true, maxlength: 10000 }],
   creationDate: { type: Date, default: Date.now },
@@ -172,7 +174,6 @@ async function createThread(shortName, fullName, authorId, description) {
       authorId,
       description,
     })
-    console.log(111)
     return await thread.save()
   } catch (error) {
     console.log('Error creating thread:', error)

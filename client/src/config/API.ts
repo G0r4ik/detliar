@@ -1,14 +1,12 @@
 import axios from 'axios'
-// import { SERVER_LOCAL, isProduction } from '@/shared/consts.js'
-// import { SERVER_API_PROD } from '../shared/consts.js'
-
-// const server = isProduction ? SERVER_API_PROD : SERVER_LOCAL
 
 const instance = axios.create({
   baseURL: 'http://localhost:30000',
-  headers: {},
   timeout: 0,
   withCredentials: true,
+  headers: {
+    // Authorization: `Bearer ${await getToken()}}`,
+  },
 })
 
 // instance.interceptors.request.use(config => {

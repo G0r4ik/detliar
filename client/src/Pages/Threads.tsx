@@ -4,8 +4,6 @@ import Sidebar from '../features/Thread/SidebarThread'
 import Thread from '../features/Thread/Thread'
 
 export default function ThreadPage() {
-  // console.log(useUser())
-
   return (
     <>
       <MyHead styleLinks={['/threads/thread.css']}></MyHead>

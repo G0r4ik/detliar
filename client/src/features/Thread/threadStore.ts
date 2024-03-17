@@ -20,8 +20,6 @@ export const counterSlice = createSlice({
       api
         .get('/getThreads')
         .then(resThreads => {
-          console.log('get')
-
           state.threads = resThreads.data
           // Dispatch a success action if desired
         })

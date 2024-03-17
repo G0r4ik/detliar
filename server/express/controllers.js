@@ -1,3 +1,4 @@
+import clerkClient from '@clerk/clerk-sdk-node'
 import { checkParameters } from '../shared/helpers.js'
 import services from './services.js'
 
@@ -7,7 +8,17 @@ class Controllers {
       const threads = await services.getThreads()
       return res.json(threads)
     } catch (error) {
-      console.log(error)
+      //errorHandler(error, 'createThread')
+      next(error)
+    }
+  }
+  async getThreadInfo(req, res, next) {
+    try {
+      const { idThread } = req.params
+      const thread = await services.getThreadInfo(idThread)
+      return res.json(thread)
+    } catch (error) {
+      console.error(error)
       //errorHandler(error, 'createThread')
       next(error)
     }
@@ -31,7 +42,6 @@ class Controllers {
       )
       res.json(threads)
     } catch (error) {
-      console.log(error)
       errorHandler(error, 'createThread')
       next(error)
     }
@@ -40,7 +50,7 @@ class Controllers {
   async createUser(req, res, next) {
     try {
       const { username, email, userImg } = req.body
-      checkParams({ username, email }) // Validate required parameters
+      checkParameters({ username, email }) // Validate required parameters
       const user = await services.createUser(username, email, userImg)
       res.json(user)
     } catch (error) {
@@ -51,11 +61,18 @@ class Controllers {
 
   async createPost(req, res, next) {
     try {
-      const { threadId, authorId, content } = req.body
-      checkParams({ threadId, authorId, content })
-      const post = await services.createPost(threadId, authorId, content)
+      const { idThread } = req.params
+      const { authorId, content, anonName } = req.body
+      checkParameters({ idThread, content })
+      const post = await services.createPost(
+        idThread,
+        content,
+        authorId,
+        anonName
+      )
       res.json(post)
     } catch (error) {
+      console.log(error)
       errorHandler(error, 'createPost')
       next(error)
     }
@@ -64,7 +81,7 @@ class Controllers {
   async createFile(req, res, next) {
     try {
       const { filename, contentType } = req.body
-      checkParams({ filename, contentType })
+      checkParameters({ filename, contentType })
       const file = await services.createFile(filename, contentType)
       res.json(file)
     } catch (error) {
@@ -76,7 +93,7 @@ class Controllers {
   async createVoteThread(req, res, next) {
     try {
       const { userId, threadId, vote } = req.body
-      checkParams({ userId, threadId, vote })
+      checkParameters({ userId, threadId, vote })
       const voteThread = await services.createVoteThread(userId, threadId, vote)
       res.json(voteThread)
     } catch (error) {
@@ -88,7 +105,7 @@ class Controllers {
   async createEmojiPost(req, res, next) {
     try {
       const { userId, threadId, postId, emojiId } = req.body
-      checkParams({ userId, threadId, postId, emojiId })
+      checkParameters({ userId, threadId, postId, emojiId })
       const emojiPost = await services.createEmojiPost(
         userId,
         threadId,
@@ -105,7 +122,7 @@ class Controllers {
   async createVotePost(req, res, next) {
     try {
       const { userId, threadId, postId, vote } = req.body
-      checkParams({ userId, threadId, postId, vote })
+      checkParameters({ userId, threadId, postId, vote })
       const votePost = await services.createVotePost(
         userId,
         threadId,
@@ -122,7 +139,7 @@ class Controllers {
   async createBan(req, res, next) {
     try {
       const { userId, ip, start, end, type, reason, whoGaveBan } = req.body
-      checkParams({ userId, ip, start, end, type, reason, whoGaveBan })
+      checkParameters({ userId, ip, start, end, type, reason, whoGaveBan })
       const ban = await services.createBan(
         userId,
         ip,
@@ -154,7 +171,7 @@ class Controllers {
 
   async createVotePost(req, res, next) {
     try {
-      checkParams({
+      checkParameters({
         /* required parameters for createVotePost */
       })
       const vote = await services.createVotePost(req.body)
@@ -190,7 +207,7 @@ class Controllers {
 
   async createBan(req, res, next) {
     try {
-      checkParams({
+      checkParameters({
         /* required parameters for createBan */
       })
       const ban = await services.createBan(req.body)
@@ -246,13 +263,15 @@ class Controllers {
   //
   //
 
-  getPosts(req, res, next) {
+  async getPosts(req, res, next) {
     try {
-    } catch (error) {}
-  }
-  getPosts(req, res, next) {
-    try {
-    } catch (error) {}
+      const { idThread } = req.params
+      const users = await clerkClient.users.getUserList()
+      const posts = await services.getPosts(idThread, users)
+      res.json(posts)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
