@@ -5,7 +5,7 @@ import socket from '../../config/socket.ts'
 import { useAuth } from '@clerk/clerk-react'
 
 let load = false
-let countOfSocket = 0
+const countOfSocket = 0
 
 export default function Sidebar() {
   const { isSignedIn } = useAuth()
@@ -51,7 +51,9 @@ export default function Sidebar() {
       setThreads(msg)
     })
 
-    return () => socket.off('create_thread')
+    return () => {
+      socket.off('create_thread')
+    }
   }, [getThreads, setThreads])
 
   return (

@@ -1,7 +1,16 @@
-import { FormEvent, RefObject, forwardRef, useEffect } from 'react'
+import {
+  ClipboardEvent,
+  FormEvent,
+  KeyboardEvent,
+  RefObject,
+  forwardRef,
+  useEffect,
+} from 'react'
 
 interface TextareaProps {
   onInput?: (event: FormEvent<HTMLTextAreaElement>) => void
+  onPaste?: (event: ClipboardEvent<HTMLTextAreaElement>) => void
+  onKeyUp?: (event: KeyboardEvent<HTMLTextAreaElement>) => void
   rows?: number
   placeholder: string
   id: string

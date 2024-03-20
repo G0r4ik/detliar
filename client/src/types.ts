@@ -22,6 +22,7 @@ export type ReactionSchema = {
 }
 
 export type PostSchema = {
+  _id: number
   number: number
   postId: string
   threadId: string
@@ -63,6 +64,7 @@ export type VotesPostsSchema = {
 }
 
 export type UserSchema = {
+  _id: number
   imageUrl: string
   username: string
   email: string
