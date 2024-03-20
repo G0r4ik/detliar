@@ -24,6 +24,7 @@ const ThreadSchema = new Schema({
   fullName: {
     type: String,
     required: true,
+    unique: false,
     trim: true,
     minlength: 2,
     maxlength: 50,

@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "run-all": "concurrently \"npm run server\" \"npm run client\"",
-    "run-all-build": "concurrently \"npm run server\" ",
+    "run-all-build": "concurrently \"npm run server\" \"npm run client-pull\" ",
+    "client-pull": "cd ./client && pnpm i && pnpm run build",
     "server": "cd ./server && npm run dev",
-    "client": "cd ./client && npm run dev"
+    "client": "cd ./client && pnpm run dev"
   },
   "keywords": [],
   "author": "",

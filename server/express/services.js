@@ -15,7 +15,6 @@ class Services {
   }
 
   async createThread(shortName, fullName, authorId, description) {
-    console.log(shortName)
     const thread = await ThreadModel.create({
       shortName,
       fullName,
@@ -24,7 +23,6 @@ class Services {
     })
 
     thread.save()
-    console.log()
     io.emit('create_thread', thread)
   }
 
@@ -57,7 +55,6 @@ class Services {
   }
 
   async createPost(threadId, content, authorId, anonName) {
-    console.log('create 2x')
     try {
       const thread = await ThreadModel.findOneAndUpdate(
         { shortName: `/${threadId}` },

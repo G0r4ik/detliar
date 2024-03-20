@@ -2,13 +2,14 @@ import api from '../../config/API'
 import { useRef } from 'react'
 import Textarea from '../../shared/Textarea'
 import { useAuth, useUser } from '@clerk/clerk-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ThreadCreate() {
   const shortName = useRef<HTMLInputElement>(null)
   const fullName = useRef<HTMLInputElement>(null)
   const description = useRef<HTMLTextAreaElement>(null)
   const { isSignedIn, user, isLoaded } = useUser()
-
+  const navigate = useNavigate()
   const { getToken } = useAuth()
 
   async function createThread() {
@@ -41,6 +42,7 @@ export default function ThreadCreate() {
           headers: { Authorization: `Bearer ${await getToken()}` },
         }
       )
+      navigate(`/threads${shortNameValue}`)
     }
   }
 

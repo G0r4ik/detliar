@@ -2,6 +2,7 @@ import { ClipboardEvent, useEffect, useRef, useState } from 'react'
 import socket from '../../config/socket.ts'
 import { useUser } from '@clerk/clerk-react'
 import api from '../../config/API.ts'
+import Textarea from '../../shared/Textarea.tsx'
 
 function CommentForm({ shorName }) {
   const { user, isSignedIn } = useUser()
@@ -9,16 +10,15 @@ function CommentForm({ shorName }) {
   const commentText = useRef<HTMLTextAreaElement>(null)
   const screens = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    // socket.on(`message`, msg => {
-    //   console.log(msg)
-    // })
-  }, [])
+  useEffect(() => {}, [])
 
   const [imgs, setImgs] = useState<string[]>([])
 
   function keyDown(event) {
-    if (event.code === 'Enter' && !event.shiftKey) sendMessage()
+    if (event.code === 'Enter' && !event.shiftKey) {
+      sendMessage()
+      commentText.current.value = ''
+    }
   }
   function sendMessage(): void {
     if ((commentName.current || isSignedIn) && commentText.current) {
@@ -31,13 +31,7 @@ function CommentForm({ shorName }) {
           content: textValue,
           authorId: user?.id,
         })
-        console.log('scoketEmiit')
 
-        // api.post(`/threads/${shorName}/posts`, {
-        //   anonName: userValue,
-        //   content: textValue,
-        //   authorId: user?.id,
-        // })
         setImgs([])
         if (commentName.current) commentName.current.value = ''
         commentText.current.value = ''
@@ -73,11 +67,11 @@ function CommentForm({ shorName }) {
         />
       )}
       <div className='comment__fix'>
-        <textarea
+        <Textarea
           ref={commentText}
           onPaste={event => pasteFile(event)}
           rows={2}
-          onKeyDown={keyDown}
+          onKeyUp={keyDown}
           placeholder='Type your message here.'
           id='comment-text'
         />

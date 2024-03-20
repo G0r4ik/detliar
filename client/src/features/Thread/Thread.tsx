@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import { PostSchema, ThreadSchema } from '../../types'
 import { useAuth } from '@clerk/clerk-react'
 import socket from '../../config/socket'
-// import emojis from 'emojis-list'
-// console.log(emojis)
+import emojis from 'emojis-list'
+console.log(emojis)
 
 export default function Thread() {
   function normalizeDate(date: Date) {

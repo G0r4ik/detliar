@@ -65,6 +65,7 @@ header {
 .themes {
   display: flex;
   flex-direction: column;
+  margin: 15px 0;
 }
 
 .go-main {
@@ -124,6 +125,7 @@ header {
 
 .title {
   font-size: 36px;
+  margin-bottom: 15px;
 }
 .thread__title {
   font-size: 36px;
@@ -190,4 +192,33 @@ header {
 
 .cl-userButtonPopoverFooter {
   display: none;
+}
+
+/*  */
+/*  */
+/*  */
+.thread__features {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-around;
+  text-align: center;
+}
+.thread__features-item div {
+  margin: 15px;
+  font-weight: 700;
+}
+
+.thread__features-item_info div {
+  font-weight: 500;
+}
+
+.thread__features-item_info {
+  text-align: start;
+}
+
+.thread__features-positive {
+  color: greenyellow;
+}
+.thread__features-negative {
+  color: tomato;
 }

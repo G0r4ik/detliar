@@ -8,10 +8,10 @@ class Controllers {
       const threads = await services.getThreads()
       return res.json(threads)
     } catch (error) {
-      //errorHandler(error, 'createThread')
       next(error)
     }
   }
+
   async getThreadInfo(req, res, next) {
     try {
       const { idThread } = req.params
@@ -19,14 +19,12 @@ class Controllers {
       return res.json(thread)
     } catch (error) {
       console.error(error)
-      //errorHandler(error, 'createThread')
       next(error)
     }
   }
   async getThrea1d(req, res, next) {
     try {
     } catch (error) {
-      errorHandler(error, 'createThread')
       next(error)
     }
   }
@@ -43,7 +41,6 @@ class Controllers {
       res.json(threads)
     } catch (error) {
       console.log(error)
-      errorHandler(error, 'createThread')
       next(error)
     }
   }
@@ -55,7 +52,6 @@ class Controllers {
       const user = await services.createUser(username, email, userImg)
       res.json(user)
     } catch (error) {
-      errorHandler(error, 'createUser')
       next(error)
     }
   }
@@ -74,7 +70,6 @@ class Controllers {
       res.json(post)
     } catch (error) {
       console.log(error)
-      errorHandler(error, 'createPost')
       next(error)
     }
   }
@@ -86,7 +81,6 @@ class Controllers {
       const file = await services.createFile(filename, contentType)
       res.json(file)
     } catch (error) {
-      errorHandler(error, 'createFile')
       next(error)
     }
   }
@@ -98,7 +92,6 @@ class Controllers {
       const voteThread = await services.createVoteThread(userId, threadId, vote)
       res.json(voteThread)
     } catch (error) {
-      errorHandler(error, 'createVoteThread')
       next(error)
     }
   }
@@ -115,7 +108,6 @@ class Controllers {
       )
       res.json(emojiPost)
     } catch (error) {
-      errorHandler(error, 'createEmojiPost')
       next(error)
     }
   }
@@ -132,7 +124,6 @@ class Controllers {
       )
       res.json(votePost)
     } catch (error) {
-      errorHandler(error, 'createVotePost')
       next(error)
     }
   }
@@ -152,7 +143,6 @@ class Controllers {
       )
       res.json(ban)
     } catch (error) {
-      errorHandler(error, 'createBan')
       next(error)
     }
   }
@@ -165,7 +155,6 @@ class Controllers {
       const votes = await services.getVotesPost(idThread, idPost)
       res.json(votes)
     } catch (error) {
-      errorHandler(error, 'getVotesPost')
       next(error)
     }
   }
@@ -178,7 +167,6 @@ class Controllers {
       const vote = await services.createVotePost(req.body)
       res.json(vote)
     } catch (error) {
-      errorHandler(error, 'createVotePost')
       next(error)
     }
   }
@@ -190,7 +178,6 @@ class Controllers {
       const bans = await services.getBans()
       res.json(bans)
     } catch (error) {
-      errorHandler(error, 'getBans')
       next(error)
     }
   }
@@ -201,7 +188,6 @@ class Controllers {
       const ban = await services.getBanById(idBan)
       res.json(ban)
     } catch (error) {
-      errorHandler(error, 'getBanById')
       next(error)
     }
   }
@@ -214,7 +200,6 @@ class Controllers {
       const ban = await services.createBan(req.body)
       res.json(ban)
     } catch (error) {
-      errorHandler(error, 'createBan')
       next(error)
     }
   }
@@ -225,7 +210,6 @@ class Controllers {
       await services.deleteBan(idBan)
       res.json({ message: 'Ban deleted successfully' })
     } catch (error) {
-      errorHandler(error, 'deleteBan')
       next(error)
     }
   }

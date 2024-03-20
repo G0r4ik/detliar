@@ -3,6 +3,7 @@ import ThreadPage from '../pages/Threads'
 import ThreadCreate from '../pages/ThreadCreate'
 import LandingPage from '../pages/Landing'
 import ErrorPage from '../pages/ErrorPage'
+import ThreadStart from '../pages/ThreadStart'
 
 const router = createBrowserRouter([
   {
@@ -10,10 +11,10 @@ const router = createBrowserRouter([
     element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
-  // {
-  //   // path: '/threads/',
-  //   // element: <ThreadPage />,
-  // },
+  {
+    path: '/threads/',
+    element: <ThreadStart />,
+  },
   {
     path: '/threads/create',
     element: <ThreadCreate />,
