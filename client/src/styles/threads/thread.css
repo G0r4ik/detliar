@@ -180,7 +180,9 @@ header {
 .thread__item-top {
   margin-bottom: 15px;
 }
-
+.thread__text {
+  white-space: pre-wrap;
+}
 .thread__bottom {
   margin-top: 15px;
   display: flex;
