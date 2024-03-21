@@ -12,9 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm run client-pull
-
     - name: Deploy to VPS
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -23,5 +20,8 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         port: ${{ secrets.VPS_PORT }}
         script: |
-          cd /var/www/detliar/server
+          cd /var/www/detliar/client
+          pnpm install
+          pnpm run build
+          cd ../server
           pm2 restart 3 --update-env
