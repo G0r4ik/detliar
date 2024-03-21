@@ -15,7 +15,7 @@ router.get(
 )
 router.post(
   '/createThread',
-  ClerkExpressRequireAuth(),
+  // ClerkExpressRequireAuth(),
   controllers.createThread
 )
 router.delete('/deleteThread', (req, res) => res.json(111))

@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "run-all": "concurrently \"npm run server\" \"npm run client\"",
-    "run-all-build": "concurrently \"npm run server\" \"npm run client-pull\" ",
     "client-pull": "cd ./client && pnpm i && pnpm run build",
     "server": "cd ./server && npm run dev",
     "client": "cd ./client && pnpm run dev"
@@ -17,3 +16,28 @@
     "concurrently": "^8.2.2"
   }
 }
+
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm run client-pull
+
+    - name: Deploy to VPS
+      uses: ssh-actions/ssh-deploy@v1
+      with:
+       
+        target: /var/www/detliar/server
+        command: pm2 restart 3 --update-env
+

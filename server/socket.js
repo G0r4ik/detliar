@@ -43,7 +43,6 @@ export default function initSockets(server) {
       rooms[threadId].delete(socket.id)
       if (rooms[threadId].size === 0) {
         delete rooms[threadId]
-        console.log('Комната удалена (осталось 0 пользователей)')
       }
     }
     socket.leave(threadId)
@@ -62,19 +61,15 @@ export default function initSockets(server) {
 
   function handleDisconnect(socket) {
     io.emit('changeUserCount', io.engine.clientsCount)
-    console.log('Пользователь вышел')
     for (const room of Object.keys(rooms)) {
       rooms[room].delete(socket.id)
       if (rooms[room].size === 0) {
         delete rooms[room]
-        console.log('Комната удалена (осталось 0 пользователей)')
       }
     }
   }
 
   io.on('connection', async socket => {
-    console.log('Пользователь вошел')
-
     socket.on('chat message', async msg => {
       await handleChatMessage(socket, msg)
     })
@@ -98,7 +93,7 @@ export default function initSockets(server) {
     io.emit('changeUserCount', io.engine.clientsCount)
   })
 
-  setInterval(() => {
-    displayRoomStatus()
-  }, 5000)
+  // setInterval(() => {
+  //   displayRoomStatus()
+  // }, 5000)
 }

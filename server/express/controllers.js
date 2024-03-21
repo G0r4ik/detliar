@@ -244,15 +244,12 @@ class Controllers {
     } catch (error) {}
   }
 
-  //
-  //
-  //
-
   async getPosts(req, res, next) {
     try {
+      const start = new Date()
       const { idThread } = req.params
-      const users = await clerkClient.users.getUserList()
-      const posts = await services.getPosts(idThread, users)
+      const posts = await services.getPosts(idThread)
+      console.log(Date.now() - start)
       res.json(posts)
     } catch (error) {
       console.log(error)

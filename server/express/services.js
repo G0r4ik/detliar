@@ -3,6 +3,14 @@ import { PostModel, ThreadModel, UserModel } from '../db/mongo.js'
 import clerkClient from '@clerk/clerk-sdk-node'
 import { io } from '../socket.js'
 
+function normalizeUser(user) {
+  return {
+    id: user.id,
+    imageUrl: user.imageUrl,
+    username: user.username,
+  }
+}
+
 class Services {
   async getThreads() {
     const threads = await ThreadModel.find({})
@@ -28,22 +36,22 @@ class Services {
 
   async getPosts(idThread) {
     try {
-      const posts = await PostModel.find({ threadId: idThread })
+      const start = new Date()
+      const posts = await PostModel.find({ threadId: idThread }, '')
+      console.log(Date.now() - start)
 
-      // Парсинг и клонирование объектов для избежания мутации данных
+      const users = await clerkClient.users.getUserList()
+
       const parsedPosts = JSON.parse(JSON.stringify(posts))
-
-      // Обработка каждого поста
+      console.log(Date.now() - start)
+      // console.log(users)
       for (let i = 0; i < parsedPosts.length; i++) {
         const post = parsedPosts[i]
         if (post.authorId) {
-          const user = await clerkClient.users.getUser(post.authorId)
-          post.user = user
+          const user = users.find(user => user.id === post.authorId)
+          post.user = normalizeUser(user)
         } else {
-          // Если автор не указан, создаем заглушку пользователя
-          post.user = {
-            username: post.anonName || 'Anonymous',
-          }
+          post.user = { username: post.anonName || 'Anonymous' }
         }
       }
 
