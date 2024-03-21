@@ -16,11 +16,12 @@ jobs:
       run: npm run client-pull
 
     - name: Deploy to VPS
-      uses: ssh-actions/ssh-deploy@v1
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        ssh_key: ${{ secrets.SSH_KEY }}
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
+        password: ${{ secrets.VPS_PASSWORD }}
         port: ${{ secrets.VPS_PORT }}
-        target: /var/www/detliar/server
-        command: pm2 restart 3 --update-env
+        script: |
+          cd /var/www/detliar/server
+          pm2 restart 3 --update-env
