@@ -11,7 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
     - name: Deploy to VPS
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -21,6 +20,7 @@ jobs:
         port: ${{ secrets.VPS_PORT }}
         script: |
           cd /var/www/detliar/client
+          git pull
           pnpm install
           pnpm run build
           cd ../server
