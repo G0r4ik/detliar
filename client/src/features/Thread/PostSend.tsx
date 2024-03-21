@@ -4,13 +4,17 @@ import { useUser } from '@clerk/clerk-react'
 import api from '../../config/API.ts'
 import Textarea from '../../shared/Textarea.tsx'
 
-function CommentForm({ shorName }) {
+function PostSend({ shorName }) {
   const { user, isSignedIn } = useUser()
   const commentName = useRef<HTMLInputElement>(null)
   const commentText = useRef<HTMLTextAreaElement>(null)
   const screens = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (isSignedIn) {
+      commentName.current.value = user?.username
+    }
+  }, [])
 
   const [imgs, setImgs] = useState<string[]>([])
 
@@ -58,28 +62,29 @@ function CommentForm({ shorName }) {
 
   return (
     <div className='comments__form'>
-      {isSignedIn || (
+      <div className='comment__top'>
         <input
           ref={commentName}
           type='text'
           placeholder='Type your name here.'
+          disabled={isSignedIn}
           id='comment-user'
-        />
-      )}
-      <div className='comment__fix'>
-        <Textarea
-          ref={commentText}
-          onPaste={event => pasteFile(event)}
-          rows={2}
-          onKeyUp={keyDown}
-          placeholder='Type your message here.'
-          id='comment-text'
         />
         <button
           onClick={sendMessage}
           className='comments__send-button button-normal'>
-          S
+          Send
         </button>
+      </div>
+      <div className='comment__fix'>
+        <Textarea
+          ref={commentText}
+          onPaste={event => pasteFile(event)}
+          rows={8}
+          onKeyUp={keyDown}
+          placeholder='Type your message here.'
+          id='comment-text'
+        />
       </div>
       <div className='comments__screens'>
         {/* <strong>files:</strong> */}
@@ -93,4 +98,4 @@ function CommentForm({ shorName }) {
   )
 }
 
-export default CommentForm
+export default PostSend

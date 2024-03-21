@@ -8,6 +8,7 @@ export interface ThreadSchema {
   numberOfPosts: number
   numberOfLikes: number
   numberOfDislikes: number
+  logo: string
 
   //   isAvailable: {
   //     type: string

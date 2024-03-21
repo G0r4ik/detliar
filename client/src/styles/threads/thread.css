@@ -1,184 +1,179 @@
-header {
-  border-bottom: 2px solid gray;
-  height: 56px;
-  padding: 5px 0;
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SFProDisplay-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
 
-.logo {
-  height: 34px;
-}
-.user-img {
-  height: 44px;
-}
-.header__inner {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SFProDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SFProDisplay-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SFProDisplay-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SFProDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-text: #fff;
+  --color-bg: var(--color-bg);
+
+  --color-card2: var(--color-card2);
+  --color-card1: #29292e;
+
+  --color-primary: #5c67cf;
+
+  --color: #98989b;
+  --color: #d9d9d9;
+  --color: #19191a;
+  --color: #252526;
+}
+
+:root.light-theme {
+  --color-text: #fff;
+  --color-bg: #323237;
+
+  --color-card2: #202022;
+  --color-card1: #29292e;
+}
+
+:root.dark-theme {
+  --color-text: #fff;
+  --color-bg: #c771a0;
+
+  --color-card2: #953168;
+  --color-card1: #9e517b;
+
+  --color-primary: #5c67cf;
+}
+
+.thread-page * {
+  scrollbar-color: royalblue var(--color-bg);
+}
+.thread-page *::-webkit-scrollbar {
+  width: 15px;
+}
+.thread-page *::-webkit-scrollbar-track {
+  background-color: var(--color-bg);
+}
+.thread-page *::-webkit-scrollbar-thumb {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-card2);
+  border-radius: 15px;
+}
 .container {
   max-width: 1400px;
   padding: 0 15px;
   margin: 0 auto;
 }
-
-/*  */
-/*  */
-/*  */
-
 .thread-page * {
-  font-size: 18px;
+  font-size: 20px;
+  font-family: 'SF Pro Display';
+  font-weight: 300;
 }
+
 .thread-page {
   display: flex;
   gap: 0 30px;
   overflow: hidden;
-}
-
-.sidebar {
-  width: 200px;
-  border-right: 2px solid gray;
-  height: calc(100vh - 56px);
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 56px);
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.sidebar__theme-title {
-  font-size: 28px;
-}
-
-.sidebar__search {
-  width: 100%;
-  margin-bottom: 10px;
-}
-.sidebar__top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 15px;
-}
-
-.themes {
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
-}
-
-.go-main {
-  /* margin-top: auto; */
-  font-size: 16px;
-}
-
-.create-theme {
-  font-size: 16px;
-
-  margin-bottom: 5px;
-  display: block;
+  background: var(--color-bg);
+  padding-top: 10px;
 }
 
 /*  */
-/*  */
-/*  */
-/*  */
-
-.create-post {
-  width: 100%;
-  height: calc(100vh - 56px - 10px);
-  overflow-y: scroll;
-  margin-top: 10px;
-  padding-top: 30px;
-}
-
-#createPostShortName {
-  width: 100px;
-}
-.thread {
-  padding-top: 30px;
-  width: 100%;
-  padding-right: 15px;
-  height: calc(100vh - 56px);
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.thread__description {
-  margin-bottom: 25px;
-}
-.thread__posts {
-  /* overflow-y: scroll; */
-  flex: 1 1 0;
-  /* height: calc(100vh - 325px); */
-  /* height: 100vh; */
-}
-
-.thread__start {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
 
 .title {
   font-size: 36px;
   margin-bottom: 15px;
 }
-.thread__title {
-  font-size: 36px;
-}
 
-.thread__item {
-  border: 1px solid rosybrown;
+/*  */
+
+.thread {
+  width: 100%;
+  /* padding-right: 15px; */
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 0 15px;
+}
+.thread__img {
+  height: 150px;
+  width: 150px;
+}
+.thread__description {
+  margin-bottom: 25px;
+  white-space: pre-wrap;
+}
+.thread__posts {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.thread__info {
+  background: var(--color-card1);
+  margin-bottom: 15px;
+  padding: 20px 25px;
   border-radius: 5px;
+  display: flex;
+  gap: 30px;
+  max-width: 1300px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+.thread__shortname {
+  display: block;
+  font-weight: 100;
   margin-bottom: 10px;
 }
-
-.thread__user-img {
-  margin-right: 15px;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
+.thread__title {
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.thread__item-content {
+  /* margin-right: 100px; */
+  margin-right: 40px;
 }
 
-.thread__user-top,
-.thread__user-bottom {
-  display: flex;
-}
-.thread__user {
-  display: flex;
-}
-
-.thread__user-date,
-.thread__user-name {
-  margin-right: 30px;
-}
-
-.thread__user-date {
-  font-size: 14px;
-}
-
-.thread__item {
-  padding: 15px;
-  padding-bottom: 0;
-}
-
-.thread__reacts {
-  display: flex;
-  gap: 0 15px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 2.5px 5px;
-  margin-left: -15px;
-  border-radius: 2.5px;
-  max-width: 320px;
+.thread__reply-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px 15px;
+  border-top-right-radius: 5px;
+  color: rgba(225, 225, 225, 0.5);
+  border-bottom-left-radius: 5px;
 }
 .thread__item-top {
   margin-bottom: 15px;
+  display: flex;
 }
 .thread__text {
   white-space: pre-wrap;
@@ -186,41 +181,25 @@ header {
 .thread__bottom {
   margin-top: 15px;
   display: flex;
-  align-items: center;
-}
-/*  */
-/*  */
-/* Вынести  */
-
-.cl-userButtonPopoverFooter {
-  display: none;
+  gap: 50px;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
-/*  */
-/*  */
-/*  */
-.thread__features {
-  display: flex;
-  margin-top: 50px;
-  justify-content: space-around;
-  text-align: center;
-}
-.thread__features-item div {
-  margin: 15px;
-  font-weight: 700;
-}
+@media (max-width: 768px) {
+  .thread__img {
+    width: 60px;
+    height: 60px;
+  }
 
-.thread__features-item_info div {
-  font-weight: 500;
-}
-
-.thread__features-item_info {
-  text-align: start;
-}
-
-.thread__features-positive {
-  color: greenyellow;
-}
-.thread__features-negative {
-  color: tomato;
+  .thread__shortname {
+    font-size: 14px;
+  }
+  .thread__title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .thread__text {
+    font-size: 16px;
+  }
 }

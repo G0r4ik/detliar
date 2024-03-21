@@ -35,10 +35,14 @@ textarea {
   outline: none;
   padding: 5px 15px;
   background: transparent;
-  border: 1px solid hsl(240 3.7% 15.9%);
+  border: none;
   border-radius: 5px;
 }
 a {
   text-decoration: none;
   color: white;
+}
+
+.cl-userButtonPopoverFooter {
+  display: none;
 }

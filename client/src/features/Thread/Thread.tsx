@@ -1,24 +1,13 @@
 import { useLoaderData } from 'react-router-dom'
-import CommentForm from '../Comment/CommentForm'
+import PostSend from './PostSend'
 import api from '../../config/API'
 import { useEffect, useState } from 'react'
 import { PostSchema, ThreadSchema } from '../../types'
 import { useAuth } from '@clerk/clerk-react'
 import socket from '../../config/socket'
-import emojis from 'emojis-list'
-console.log(emojis)
+import ThreadPost from './ThreadPost'
 
 export default function Thread() {
-  function normalizeDate(date: Date) {
-    return new Intl.DateTimeFormat('ru', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(date))
-  }
-
   type Token = {
     idThread: string
   }
@@ -49,6 +38,7 @@ export default function Thread() {
     })
 
     return () => {
+      socket.off('message')
       socket.emit('leave_thread', idThread)
     }
   }, [idThread, getToken])
@@ -57,61 +47,24 @@ export default function Thread() {
     <div className='thread'>
       {thread && (
         <>
-          <div className='thread__start'>
-            <h1 className='thread__title'>
-              <strong>{thread.shortName}</strong>
-              <br />
-              {thread.fullName}
-            </h1>
-            <div className='thread__info'>icon</div>
+          <div className='thread__info'>
+            <img
+              className='thread__img'
+              src={thread.logo || '/thread-logo.png'}
+              alt=''
+            />
+            <div className='thread__start'>
+              <span className='thread__shortname'>{thread.shortName}</span>
+              <h1 className='thread__title'>{thread.fullName}</h1>
+              <pre className='thread__description'>{thread.description}</pre>
+            </div>
           </div>
-          <pre className='thread__description'>{thread.description}</pre>
           <div className='thread__posts'>
             {posts?.map(item => (
-              <div className='thread__item' key={item._id}>
-                <div className='thread__item-top'>
-                  <div className='thread__item-user thread__user'>
-                    <img
-                      src={item?.user?.imageUrl || '/imgs/anon.png'}
-                      alt=''
-                      className='thread__user-img'
-                    />
-                    <div>
-                      <div className='thread__user-top'>
-                        <div className='thread__user-name'>
-                          {item?.user?.username || item.anonName}
-                        </div>
-                        {/* <div className='thread__user-carma'>{item.user}</div> */}
-                      </div>
-                      <div className='thread__user-bottom'>
-                        <div className='thread__user-date'>
-                          {normalizeDate(item.creationDate)}
-                        </div>
-                        <div className='thread__user-number-of-post'>
-                          #{item.number}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* <div className='thread__files'>
-              <img src='' alt='' className='thread__img' />
-            </div> */}
-                </div>
-                <pre className='thread__text'>{item.content}</pre>
-                <div className='thread__bottom'>
-                  {/* <div className='thread__reacts'>
-                    <span className='thread__react'>😀 - 5</span>
-                    <span className='thread__react'>💩 - 2</span>
-                    <span className='thread__react'>✋ - 1</span>
-                    <span className='thread__react-more'>...</span>
-                  </div>
-                  <button className='thread__reply'>Ответить</button> */}
-                </div>
-              </div>
+              <ThreadPost item={item} key={item._id} />
             ))}
-            <CommentForm shorName={idThread} />
           </div>
+          <PostSend shorName={idThread} />
         </>
       )}
     </div>

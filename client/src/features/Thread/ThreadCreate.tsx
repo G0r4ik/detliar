@@ -52,31 +52,39 @@ export default function ThreadCreate() {
   }
   return (
     <div className='create-post'>
-      <h1 className='create-post__title title'>Создать тред</h1>
-      <input
-        type='text'
-        placeholder='краткое название'
-        ref={shortName}
-        onInput={inputValue}
-        id='createPostShortName'
-      />
-      <br />
-      <input
-        type='text'
-        placeholder='полное название'
-        ref={fullName}
-        id='createPostFullName'
-      />
-      <br />
-      <Textarea
-        ref={description}
-        rows={3}
-        placeholder='Описание вашего треда'
-        id='comment-text'
-      />
-      <button className='button-normal' onClick={createThread}>
-        Создать
-      </button>
+      <div className='create-post__inner'>
+        <h1 className='create-post__title title'>Create thread</h1>
+        <input
+          type='text'
+          placeholder='Shortname'
+          ref={shortName}
+          onInput={inputValue}
+          id='createPostShortName'
+        />
+        <input
+          type='text'
+          placeholder='Fullname'
+          ref={fullName}
+          id='createPostFullName'
+        />
+        <div className='create-post__bottom'>
+          <label className='input-file'>
+            <input type='file' name='file' />
+            <span className='input-file-btn'>+</span>
+          </label>
+          <textarea
+            ref={description}
+            rows={15}
+            placeholder='Description'
+            id='comment-text'
+          />
+        </div>
+        <button
+          className='button-normal create-post-btn'
+          onClick={createThread}>
+          Create
+        </button>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,49 @@
+.thread__features-item {
+  font-weight: normal !important;
+  text-align: start !important;
+}
+
+.thread__features {
+  margin-top: 50px;
+  /* display: flex;
+  justify-content: space-around;
+  text-align: center;
+  */
+}
+
+.thread-info {
+  height: calc(100vh - 80px);
+  overflow: auto;
+}
+.thread__features tr td {
+  margin: 15px;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px;
+  padding-right: 50px;
+}
+
+.thread__features-item_info div {
+  font-weight: 500;
+}
+
+.thread__features-item_info {
+  text-align: start;
+}
+
+.thread__features-positive {
+  color: greenyellow;
+}
+.thread__features-negative {
+  color: tomato;
+}
+
+@media (max-width: 768px) {
+  .thread__features tr td {
+    padding: 5px;
+    font-size: 14px;
+  }
+  .thread__features {
+    margin-top: 25px;
+  }
+}

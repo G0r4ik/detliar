@@ -1,0 +1,63 @@
+.thread__item {
+  max-width: 1300px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background: var(--color-card2);
+  width: auto;
+  display: inline-block;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.thread__date {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.thread__user-number-of-post {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.25);
+}
+.thread__user-img-wrapper {
+  width: 75px;
+  height: 75px;
+  min-width: 75px;
+  min-height: 75px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+.thread__user-img {
+  border-radius: 10px;
+  /* background: gainsboro; */
+  width: 100%;
+  height: 100%;
+}
+
+.thread__user-top,
+.thread__user-bottom {
+  display: flex;
+}
+.thread__user {
+  display: flex;
+}
+
+.thread__user-name {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.thread__user-date {
+  font-size: 14px;
+}
+
+.thread__item {
+  padding: 15px;
+  position: relative;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .thread__item {
+    width: 100%;
+  }
+}

@@ -6,7 +6,7 @@ import Thread from '../features/Thread/Thread'
 export default function ThreadPage() {
   return (
     <>
-      <MyHead styleLinks={['/threads/thread.css']}></MyHead>
+      <MyHead styleLinks={[]}></MyHead>
       <Header />
       <main className='thread-page'>
         <Sidebar />

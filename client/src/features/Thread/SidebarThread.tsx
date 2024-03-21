@@ -3,9 +3,9 @@ import threadsStore from '../../config/store.ts'
 import { Link } from 'react-router-dom'
 import socket from '../../config/socket.ts'
 import { useAuth } from '@clerk/clerk-react'
+import ChangeTheme from '../../shared/ChangeTheme.tsx'
 
 let load = false
-const countOfSocket = 0
 
 export default function Sidebar() {
   const { isSignedIn } = useAuth()
@@ -42,6 +42,8 @@ export default function Sidebar() {
     setSearchTerm(event.target.value.toLowerCase())
   }
 
+  const sidebar = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     if (!load) {
       getThreads()
@@ -56,38 +58,45 @@ export default function Sidebar() {
     }
   }, [getThreads, setThreads])
 
+  function showSidebar() {
+    sidebar.current.classList.toggle('sidebar_hide')
+  }
   return (
-    <div className='sidebar'>
-      <div className='sidebar__top'>
-        <strong className='sidebar__theme-title'>Темы</strong>
-        <strong className='sidebar__theme-count'>({threads.length})</strong>
-      </div>
-      <input
-        className='sidebar__search'
-        placeholder='поиск'
-        ref={searchThreadInput}
-        onChange={handleSearchChange}
-      />
-      <div className='themes'>
-        {filteredThreads.map(thread => (
-          <Link
-            className='sidebar__theme-name'
-            key={thread._id}
-            to={`/threads${thread.shortName}`}>
-            {thread.shortName}
-          </Link>
-        ))}
-      </div>
+    <div className='sidebar sidebar_hide' ref={sidebar}>
+      <button className='sidebar__burger' onClick={showSidebar}></button>
+      <div className='sidebar__inner'>
+        <div className='sidebar__top'>
+          <strong className='sidebar__theme-title'>Topics</strong>
+          <input
+            className='sidebar__search'
+            placeholder='Search'
+            ref={searchThreadInput}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <div className='themes'>
+          {filteredThreads.map(thread => (
+            <Link
+              className='sidebar__theme-name'
+              key={thread._id}
+              to={`/threads${thread.shortName}`}>
+              {thread.shortName}
+            </Link>
+          ))}
+        </div>
 
-      <div style={{ marginTop: ' auto' }}>
-        {isSignedIn && (
-          <Link to='/threads/create' className='create-theme'>
-            Создать тему
-          </Link>
-        )}
-        <Link to='/' className='go-main'>
-          Обратно
-        </Link>
+        <div className='sidebar__bottom'>
+          <ChangeTheme />
+          <div className='sidebar__create-thread'>
+            {isSignedIn && (
+              <Link
+                to='/threads/create'
+                className='sidebar__create-thread-button'>
+                Create
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -4,14 +4,18 @@ import {
   SignInButton,
   UserButton,
 } from '@clerk/clerk-react'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
     <header>
       <div className='container'>
         <div className='header__inner'>
-          <img src='/logo.png' alt='' className='logo' />
-          {/* <input placeholder='поиск...' type='text' className='search' /> */}
+          <Link to='/' className='header__go-back'>
+            <img src='/back button.svg' className='header__go-back' alt='' />
+          </Link>
+          <div className='header__title'>Threads</div>
+
           <SignedOut>
             <SignInButton />
           </SignedOut>

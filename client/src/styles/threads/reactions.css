@@ -1,0 +1,37 @@
+.thread__reacts {
+  display: flex;
+  gap: 0 10px;
+  align-items: center;
+  background: var(--color-bg);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.thread__react {
+  cursor: pointer;
+}
+.thread__react-more {
+  cursor: pointer;
+}
+.react__count {
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 2.5px;
+  font-size: 14px;
+}
+.react__smile {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.thread__react-more-btn {
+  display: block;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .thread__reacts {
+    padding: 2.5px 5px;
+  }
+  .react__smile {
+    font-size: 16px;
+  }
+}
