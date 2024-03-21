@@ -11,7 +11,11 @@ function PostSend({ shorName }) {
   const screens = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    console.log('useEf')
+    console.log(isSignedIn)
     if (isSignedIn) {
+      console.log('isSigned')
+      console.log(user)
       commentName.current.value = user?.username
     }
   }, [])
