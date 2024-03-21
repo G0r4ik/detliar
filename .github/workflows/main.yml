@@ -1,0 +1,26 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm run client-pull
+
+    - name: Deploy to VPS
+      uses: ssh-actions/ssh-deploy@v1
+      with:
+        ssh_key: ${{ secrets.SSH_KEY }}
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        port: ${{ secrets.VPS_PORT }}
+        target: /var/www/detliar/server
+        command: pm2 restart 3 --update-env
