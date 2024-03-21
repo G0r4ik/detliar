@@ -44,7 +44,6 @@ class Services {
 
       const parsedPosts = JSON.parse(JSON.stringify(posts))
       console.log(Date.now() - start)
-      // console.log(users)
       for (let i = 0; i < parsedPosts.length; i++) {
         const post = parsedPosts[i]
         if (post.authorId) {
