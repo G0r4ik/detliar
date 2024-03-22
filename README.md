@@ -1,5 +1,9 @@
 # tasks
 
+- еще набор сообщения вниз уходит
+-
+- кривые реакции
+
 <https://www.twitch.tv/detliar666>
 kinopois
 

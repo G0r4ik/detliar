@@ -41,8 +41,10 @@
 }
 
 .thread__user-name {
-  font-size: 32px;
+  font-size: 28px;
+  font-weight: 500;
   margin-bottom: 10px;
+  margin-right: 65px;
 }
 
 .thread__user-date {

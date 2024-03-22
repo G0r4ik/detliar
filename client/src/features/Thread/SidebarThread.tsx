@@ -87,15 +87,15 @@ export default function Sidebar() {
 
         <div className='sidebar__bottom'>
           <ChangeTheme />
-          <div className='sidebar__create-thread'>
-            {isSignedIn && (
+          {isSignedIn && (
+            <div className='sidebar__create-thread'>
               <Link
                 to='/threads/create'
                 className='sidebar__create-thread-button'>
                 Create
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

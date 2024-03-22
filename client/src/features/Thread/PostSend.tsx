@@ -41,7 +41,6 @@ function PostSend({ shorName }) {
         })
 
         setImgs([])
-        if (commentName.current) commentName.current.value = ''
         commentText.current.value = ''
         commentText.current.value.trim()
       }
@@ -89,6 +88,7 @@ function PostSend({ shorName }) {
           placeholder='Type your message here.'
           id='comment-text'
         />
+        <img className='comment__pin' src='/pin.svg' alt='' />
       </div>
       <div className='comments__screens'>
         {/* <strong>files:</strong> */}

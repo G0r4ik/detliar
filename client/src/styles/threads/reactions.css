@@ -2,12 +2,15 @@
   display: flex;
   gap: 0 10px;
   align-items: center;
-  background: var(--color-bg);
+  background: rgba(255, 255, 255, 0.05);
   padding: 5px 10px;
   border-radius: 4px;
 }
 .thread__react {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 .thread__react-more {
   cursor: pointer;
@@ -25,6 +28,10 @@
 .thread__react-more-btn {
   display: block;
   height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
 }
 
 @media (max-width: 768px) {

@@ -95,6 +95,14 @@
   display: flex;
   width: 100%;
   align-items: flex-end;
+  position: relative;
+}
+
+.comment__pin {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 @media (max-width: 768px) {

@@ -5,7 +5,7 @@ export default function ChangeTheme() {
 
   function toggleTheme() {
     const activeTheme = localStorage.getItem('user-theme')
-    setTheme(activeTheme === 'light-theme' ? 'dark-theme' : 'light-theme')
+    setTheme(activeTheme === 'dark-theme' ? 'light-theme' : 'dark-theme')
   }
   function getTheme() {
     return localStorage.getItem('user-theme')

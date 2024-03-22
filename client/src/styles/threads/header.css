@@ -9,6 +9,7 @@ header {
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  padding: 0 75px;
 }
 .header__go-back {
   height: 100%;
@@ -16,7 +17,6 @@ header {
 }
 
 .header__title {
-  font-family: 'Pt Sans';
   line-height: 1;
   font-size: 60px;
   text-transform: uppercase;
@@ -35,5 +35,8 @@ header {
 @media (max-width: 768px) {
   .header__title {
     font-size: 28px;
+  }
+  .header__inner {
+    padding: 0 10px;
   }
 }
