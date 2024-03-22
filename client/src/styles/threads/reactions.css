@@ -1,16 +1,21 @@
 .thread__reacts {
-  display: flex;
-  gap: 0 10px;
-  align-items: center;
   background: rgba(255, 255, 255, 0.05);
   padding: 5px 10px;
   border-radius: 4px;
+  position: relative;
+}
+.thread__reacts-inner {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  max-width: 200px;
 }
 .thread__react {
   cursor: pointer;
   display: flex;
   align-items: center;
   line-height: 0;
+  margin-right: 10px;
 }
 .thread__react-more {
   cursor: pointer;
@@ -32,6 +37,17 @@
   border-radius: 50%;
   width: 24px;
   height: 24px;
+}
+
+em-emoji-picker {
+  position: absolute;
+  right: 0px;
+  height: 50px;
+  z-index: 5;
+  bottom: 55px;
+  width: 290px;
+  resize: horizontal;
+  overflow: auto;
 }
 
 @media (max-width: 768px) {

@@ -231,9 +231,20 @@ class Controllers {
     try {
     } catch (error) {}
   }
-  createReaction(req, res, next) {
+  async createReaction(req, res, next) {
     try {
-    } catch (error) {}
+      const { idThread, idPost } = req.params
+      const { react } = req.body
+      console.log(idPost, idThread, react)
+      const posts = await services.createReaction(
+        idThread,
+        idPost,
+        react,
+        req.auth.userId
+      )
+    } catch (error) {
+      console.log(error)
+    }
   }
   deletePost(req, res, next) {
     try {
@@ -246,10 +257,8 @@ class Controllers {
 
   async getPosts(req, res, next) {
     try {
-      const start = new Date()
       const { idThread } = req.params
       const posts = await services.getPosts(idThread)
-      console.log(Date.now() - start)
       res.json(posts)
     } catch (error) {
       console.log(error)

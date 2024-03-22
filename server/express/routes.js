@@ -8,14 +8,10 @@ const router = express.Router()
 
 // ThreadSchema
 router.get('/getThreads', controllers.getThreads)
-router.get(
-  '/getThreadInfo/:idThread',
-  ClerkExpressWithAuth(),
-  controllers.getThreadInfo
-)
+router.get('/getThreadInfo/:idThread', controllers.getThreadInfo)
 router.post(
   '/createThread',
-  // ClerkExpressRequireAuth(),
+  ClerkExpressRequireAuth(),
   controllers.createThread
 )
 router.delete('/deleteThread', (req, res) => res.json(111))
@@ -34,7 +30,8 @@ router.get(
   controllers.getReactions
 )
 router.post(
-  '/threads/:idThread/posts/:idPost/reactions',
+  '/threads/:idThread/posts/:idPost/react',
+  ClerkExpressRequireAuth(),
   controllers.createReaction
 )
 

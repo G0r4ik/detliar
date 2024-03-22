@@ -12,6 +12,8 @@
   "dependencies": {
     "@clerk/clerk-react": "^4.30.7",
     "@clerk/themes": "^1.7.10",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.7",
     "cross-env": "^7.0.3",

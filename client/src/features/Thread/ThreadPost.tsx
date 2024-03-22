@@ -44,7 +44,11 @@ export default function ThreadPost({ item }) {
           </div>
         </div>
         <div className='thread__user-number-of-post'>{item.number}</div>
-        <Reactions />
+        <Reactions
+          idPost={item._id}
+          idThread={item.threadId}
+          reacts={item.reactions}
+        />
       </div>
     </div>
   )

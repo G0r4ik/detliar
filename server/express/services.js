@@ -1,5 +1,11 @@
 import mongoose from 'mongoose'
-import { PostModel, ThreadModel, UserModel } from '../db/mongo.js'
+import {
+  EmojiPostsModel,
+  PostModel,
+  ReactionModel,
+  ThreadModel,
+  UserModel,
+} from '../db/mongo.js'
 import clerkClient from '@clerk/clerk-sdk-node'
 import { io } from '../socket.js'
 
@@ -34,18 +40,52 @@ class Services {
     io.emit('create_thread', thread)
   }
 
+  async createReaction(idThread, idPost, react, user) {
+    console.log(user)
+    const emoji = await EmojiPostsModel.create({
+      threadId: idThread,
+      postId: idPost,
+      emoji: react,
+      userId: user,
+    })
+
+    io.emit('reaction', emoji)
+  }
+
   async getPosts(idThread) {
     try {
-      const start = new Date()
       const posts = await PostModel.find({ threadId: idThread }, '')
-      console.log(Date.now() - start)
 
       const users = await clerkClient.users.getUserList()
 
       const parsedPosts = JSON.parse(JSON.stringify(posts))
-      console.log(Date.now() - start)
+      const reactionsInThread = await EmojiPostsModel.find({
+        threadId: idThread,
+      })
+
+      function group(emojis) {
+        const res = {}
+        for (let i = 0; i < emojis.length; i++) {
+          const emoji = emojis[i]
+          if (!res[emoji.emoji]) {
+            res[emoji.emoji] = {
+              emoji: emoji.emoji,
+              count: 1,
+              users: [emoji.userId],
+            }
+          } else {
+            res[emoji.emoji].count++
+            res[emoji.emoji].users.push(emoji.userId)
+          }
+        }
+        return Object.values(res)
+      }
+
       for (let i = 0; i < parsedPosts.length; i++) {
         const post = parsedPosts[i]
+        post.reactions = group(
+          reactionsInThread.filter(r => r.postId.toString() === post._id)
+        )
         if (post.authorId) {
           const user = users.find(user => user.id === post.authorId)
           post.user = normalizeUser(user)

@@ -69,7 +69,7 @@ function PostSend({ shorName }) {
         <input
           ref={commentName}
           type='text'
-          placeholder='Type your name here.'
+          placeholder='Type your name'
           disabled={isSignedIn}
           id='comment-user'
         />

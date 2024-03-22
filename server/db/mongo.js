@@ -74,6 +74,21 @@ const PostSchema = new Schema(
   { strict: false }
 )
 
+const reacts_resp = [
+  {
+    '👍': {
+      users: {},
+      count: 1,
+    },
+  },
+]
+
+const react = {
+  _id: 1,
+  user_id: 1,
+  react: '👍',
+}
+
 const FileSchema = new Schema(
   {
     filename: { type: String, required: true },
@@ -93,10 +108,10 @@ const VotesThreadSchema = new Schema(
 
 const EmojiPostsSchema = new Schema(
   {
-    userId: { type: mongoId, ref: 'User', required: true },
-    threadId: { type: mongoId, ref: 'Thread', required: true },
+    userId: { type: String, required: true },
+    threadId: { type: String, required: true },
     postId: { type: mongoId, ref: 'Post', required: true },
-    emojiId: { type: mongoId, ref: 'Emoji', required: true },
+    emoji: { type: String, required: true },
   },
   { strict: false }
 )
