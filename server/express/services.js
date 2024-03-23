@@ -118,6 +118,7 @@ class Services {
         threadId,
         content,
         number: thread.numberOfPosts,
+        reactions: [],
         ...(authorId ? { authorId } : { anonName }),
       }
 

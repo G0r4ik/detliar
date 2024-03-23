@@ -13,14 +13,13 @@ export default function Reactions({ idThread, idPost, reacts }) {
 
   useEffect(() => {
     socket.on('reaction', msg => {
-      console.log(msg)
+      if (msg.postId !== idPost) return
       const isOldR = tReacts.findIndex(react => react.emoji === msg.emoji)
       if (isOldR !== -1) {
         const updatedReacts = [...tReacts]
         updatedReacts[isOldR].count++
         setTreacts(updatedReacts)
       } else {
-        console.log('Еще нет')
         setTreacts([
           ...tReacts,
           {
@@ -40,7 +39,6 @@ export default function Reactions({ idThread, idPost, reacts }) {
   async function emojiSelect(event) {
     setIsShowEmojiSelect(false)
 
-    console.log('select!')
     api.post(
       `/threads/${idThread}/posts/${idPost}/react`,
       {
