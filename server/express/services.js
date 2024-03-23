@@ -130,6 +130,12 @@ class Services {
       throw error
     }
   }
+
+  async getUser(idUser) {
+    const user = await clerkClient.users.getUser(idUser)
+    console.log(user.username)
+    return { username: user.username }
+  }
 }
 
 export default new Services()

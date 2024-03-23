@@ -264,6 +264,16 @@ class Controllers {
       console.log(error)
     }
   }
+
+  async getUser(req, res, next) {
+    try {
+      const { userId } = req.params
+      const user = await services.getUser(userId)
+      res.json(user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export default new Controllers()

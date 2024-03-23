@@ -6,6 +6,8 @@ import {
 } from '@clerk/clerk-sdk-node'
 const router = express.Router()
 
+router.get('/user/:userId', controllers.getUser)
+
 // ThreadSchema
 router.get('/getThreads', controllers.getThreads)
 router.get('/getThreadInfo/:idThread', controllers.getThreadInfo)

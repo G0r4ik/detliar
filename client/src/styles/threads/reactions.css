@@ -8,17 +8,18 @@
   display: flex;
   align-items: center;
   overflow-x: auto;
+  flex-wrap: wrap;
   max-width: 200px;
 }
 .thread__react {
   cursor: pointer;
   display: flex;
   align-items: center;
-  line-height: 0;
   margin-right: 10px;
 }
 .thread__react-more {
   cursor: pointer;
+  margin-right: 5px;
 }
 .react__count {
   color: rgba(255, 255, 255, 0.5);
@@ -38,14 +39,36 @@
   width: 24px;
   height: 24px;
 }
+.react__who {
+  z-index: 5;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  white-space: nowrap;
+  top: 35px;
+  padding: 5px;
+  right: 0;
+  display: flex;
 
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  background: var(--color-card2);
+  border-radius: 5px;
+}
+.react__who span {
+  border-radius: 5px;
+  padding: 2px;
+  display: block;
+  font-size: 14px;
+}
 em-emoji-picker {
   position: absolute;
   right: 0px;
   height: 50px;
   z-index: 5;
   bottom: 55px;
-  width: 290px;
+  width: 210px;
   resize: horizontal;
   overflow: auto;
 }

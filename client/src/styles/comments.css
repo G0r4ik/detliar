@@ -12,7 +12,19 @@
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.3);
+
+  /* position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+ */
+  height: 305px;
 }
+/* 
+.comments__form_hide {
+  bottom: -270px;
+  padding-top: 40px;
+} */
 .comment__top {
   display: flex;
   align-items: center;

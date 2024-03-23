@@ -127,6 +127,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* margin-bottom: 305px; */
 }
 .thread__info {
   background: var(--color-card1);
