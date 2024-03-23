@@ -52,14 +52,14 @@ export default function Reactions({ idThread, idPost, reacts }) {
     let tmp = []
     for (const emojiR of tReacts) {
       const emoji = emojiR.emoji
-
       const usersFind = emojiR.users
+
       for (const user of usersFind) {
         if (hash[user + emoji]) hash[user + emoji].count++
         else hash[user + emoji] = { count: 1 }
       }
 
-      const set = new Set(usersFind)
+      const set = new Set<string>(usersFind)
       for (const user of set) {
         if (usersHash[user]) {
           tmp = [
