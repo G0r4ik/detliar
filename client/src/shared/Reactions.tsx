@@ -12,7 +12,7 @@ export default function Reactions({ idThread, idPost, reacts }) {
 
   const [tReacts, setTreacts] = useState(reacts)
   const [users, setUsers] = useState([])
-  const { getToken } = useAuth()
+  const { getToken, isSignedIn } = useAuth()
   const usersHash = {}
   const who = useRef()
 
@@ -112,6 +112,7 @@ export default function Reactions({ idThread, idPost, reacts }) {
           ))}
         </div>
       )}
+
       <div className='thread__reacts-inner'>
         {tReacts.map(react => (
           <span className='thread__react' key={react.emoji}>
@@ -124,32 +125,37 @@ export default function Reactions({ idThread, idPost, reacts }) {
           </span>
         ))}
 
-        <span
-          className='thread__react-more'
-          onClick={() => {
-            setIsShowEmojiSelect(!isShowEmojiSelect)
-          }}>
-          <img
-            src='/down button.svg'
-            alt=''
-            className='thread__react-more-btn'
-          />
-        </span>
-        <svg
-          onClick={() => showUsers()}
-          xmlns='http://www.w3.org/2000/svg'
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='rgba(255, 255,255,0.5)'
-          strokeWidth='2'
-          strokeLinecap='round'
-          strokeLinejoin='round'>
-          <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
-          <circle cx='12' cy='12' r='3' />
-        </svg>
+        {isSignedIn && (
+          <span
+            className='thread__react-more'
+            onClick={() => {
+              setIsShowEmojiSelect(!isShowEmojiSelect)
+            }}>
+            <img
+              src='/down button.svg'
+              alt=''
+              className='thread__react-more-btn'
+            />
+          </span>
+        )}
+        {tReacts.length > 0 && (
+          <svg
+            onClick={() => showUsers()}
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='rgba(255, 255,255,0.5)'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'>
+            <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
+            <circle cx='12' cy='12' r='3' />
+          </svg>
+        )}
       </div>
+
       {isShowEmojiSelect && (
         <Picker
           className='react-select'
