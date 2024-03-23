@@ -78,7 +78,7 @@ class Services {
             res[emoji.emoji].users.push(emoji.userId)
           }
         }
-        return Object.values(res)
+        return Object.values(res).sort((a, b) => b.count - a.count)
       }
 
       for (let i = 0; i < parsedPosts.length; i++) {
