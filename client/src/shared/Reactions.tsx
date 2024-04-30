@@ -10,7 +10,7 @@ export default function Reactions({ idThread, idPost, reacts }) {
   const [isShowEmojiSelect, setIsShowEmojiSelect] = useState(false)
   const [isShowUser, setIsShowUser] = useState(false)
 
-  const [tReacts, setTreacts] = useState(reacts)
+  const [tReacts, setReacts] = useState(reacts)
   const [users, setUsers] = useState([])
   const { getToken, isSignedIn } = useAuth()
   const usersHash = {}
@@ -23,31 +23,33 @@ export default function Reactions({ idThread, idPost, reacts }) {
 
   useEffect(() => {
     socket.on('reaction', msg => {
+      console.log('react', idPost, msg.postId)
       if (msg.postId !== idPost) return
       const isOldR = tReacts.findIndex(react => react.emoji === msg.emoji)
       if (isOldR !== -1) {
         const updatedReacts = [...tReacts]
         updatedReacts[isOldR].count++
-        setTreacts(updatedReacts)
+        setReacts(updatedReacts)
       } else {
-        setTreacts([
-          ...tReacts,
-          {
-            users: [msg.userId],
-            emoji: msg.emoji,
-            count: 1,
-          },
-        ])
+        console.log('net', tReacts)
+        const updated = [...tReacts]
+        updated.push({
+          users: [msg.userId],
+          emoji: msg.emoji,
+          count: 1,
+        })
+        console.log(updated)
+        setReacts(updated)
+        console.log(tReacts)
       }
     })
 
     return () => {
-      socket.off('reaction')
+      // socket.off('reaction')
     }
-  }, [])
+  }, [tReacts])
 
   async function showUsers() {
-    setIsShowUser(!isShowUser)
     const hash = {}
     let tmp = []
     for (const emojiR of tReacts) {
@@ -85,6 +87,7 @@ export default function Reactions({ idThread, idPost, reacts }) {
     }
     tmp.sort((a, b) => b.count - a.count)
     setUsers(tmp)
+    setIsShowUser(!isShowUser)
   }
 
   async function emojiSelect(event) {
@@ -115,12 +118,11 @@ export default function Reactions({ idThread, idPost, reacts }) {
 
       <div className='thread__reacts-inner'>
         {tReacts.map(react => (
-          <span className='thread__react' key={react.emoji}>
-            <span
-              className='react__smile'
-              onClick={() => emojiSelect({ native: react.emoji })}>
-              {react.emoji}
-            </span>
+          <span
+            className='thread__react'
+            key={react.emoji}
+            onClick={() => emojiSelect({ native: react.emoji })}>
+            <span className='react__smile'>{react.emoji}</span>
             <span className='react__count'>{react.count}</span>
           </span>
         ))}
